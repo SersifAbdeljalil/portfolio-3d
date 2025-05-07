@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Float, MeshDistortMaterial, Sphere } from '@react-three/drei';
 import { ArrowRight, Mail, Code, Server, Boxes } from 'lucide-react';
@@ -39,14 +40,10 @@ function ThreeBackground() {
 }
 
 function Home() {
-  const skills = [
-    "React.js",
-    "Three.js",
-    "Node.js",
-    "MySQL",
-    "Animation 3D",
-    "WebGL"
-  ];
+  const { t } = useTranslation();
+  
+  // Obtenir les compétences depuis les traductions
+  const skills = t('home.skills', { returnObjects: true });
   
   // Animation au scroll
   useEffect(() => {
@@ -74,11 +71,11 @@ function Home() {
       <div className="container">
         <div className="home-content">
           <div className="home-text">
-            <h1 className="title fade-in">SERSIF Abdeljalil</h1>
+            <h1 className="title fade-in">{t('home.title')}</h1>
             
             <h2 className="subtitle fade-in delay-1">
               <span className="rotating-text">
-                Développeur Full Stack
+                {t('home.subtitle')}
                 <span className="skills-carousel">
                   {skills.map((skill, index) => (
                     <span key={index} style={{ animationDelay: `${index * 0.5}s` }}>
@@ -90,18 +87,16 @@ function Home() {
             </h2>
             
             <p className="description fade-in delay-2">
-              Bienvenue dans mon univers créatif où je donne vie à vos idées avec des 
-              expériences web interactives et immersives. Spécialisé en React, Three.js 
-              et Node.js, je crée des applications qui allient design et fonctionnalité.
+              {t('home.description')}
             </p>
             
             <div className="cta-buttons fade-in delay-3">
               <Link to="/projects" className="btn btn-primary btn-icon">
-                <span>Voir mes projets</span>
+                <span>{t('home.viewProjects')}</span>
                 <ArrowRight size={20} />
               </Link>
               <Link to="/contact" className="btn btn-secondary btn-icon">
-                <span>Me contacter</span>
+                <span>{t('home.contactMe')}</span>
                 <Mail size={20} />
               </Link>
             </div>
@@ -119,24 +114,24 @@ function Home() {
             <div className="card-icon">
               <Code size={24} />
             </div>
-            <h3>Front-end</h3>
-            <p>Création d'interfaces réactives et intuitives avec React et Three.js</p>
+            <h3>{t('home.highlights.frontend.title')}</h3>
+            <p>{t('home.highlights.frontend.description')}</p>
           </div>
           
           <div className="highlight-card">
             <div className="card-icon">
               <Server size={24} />
             </div>
-            <h3>Back-end</h3>
-            <p>Développement d'APIs robustes avec Node.js, Express et MySQL</p>
+            <h3>{t('home.highlights.backend.title')}</h3>
+            <p>{t('home.highlights.backend.description')}</p>
           </div>
           
           <div className="highlight-card">
             <div className="card-icon">
               <Boxes size={24} />
             </div>
-            <h3>3D & Animation</h3>
-            <p>Création d'expériences immersives avec Three.js et WebGL</p>
+            <h3>{t('home.highlights.animation.title')}</h3>
+            <p>{t('home.highlights.animation.description')}</p>
           </div>
         </div>
       </div>

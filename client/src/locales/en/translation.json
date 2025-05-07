@@ -1,0 +1,139 @@
+{
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "skills": "Skills",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "footer": {
+      "description": "Full Stack & 3D Developer specializing in React.js, Three.js, and Node.js. I create interactive and immersive web experiences.",
+      "navigation": "Navigation",
+      "contact": "Contact",
+      "socialNetworks": "Social Networks",
+      "allRightsReserved": "All rights reserved"
+    },
+    "home": {
+      "title": "SERSIF Abdeljalil",
+      "subtitle": "Full Stack Developer",
+      "skills": [
+        "React.js",
+        "Three.js",
+        "Node.js",
+        "MySQL",
+        "3D Animation",
+        "WebGL"
+      ],
+      "description": "Welcome to my creative universe where I bring your ideas to life with interactive and immersive web experiences. Specialized in React, Three.js, and Node.js, I create applications that combine design and functionality.",
+      "viewProjects": "View my projects",
+      "contactMe": "Contact me",
+      "highlights": {
+        "frontend": {
+          "title": "Front-end",
+          "description": "Creation of responsive and intuitive interfaces with React and Three.js"
+        },
+        "backend": {
+          "title": "Back-end",
+          "description": "Development of robust APIs with Node.js, Express, and MySQL"
+        },
+        "animation": {
+          "title": "3D & Animation",
+          "description": "Creation of immersive experiences with Three.js and WebGL"
+        }
+      }
+    },
+    "about": {
+      "title": "About Me",
+      "intro": "Hello! I am a Full Stack developer passionate about creating interactive and immersive web experiences. With expertise in React.js, Three.js, and Node.js, I build modern web applications that combine functionality and attractive design.",
+      "bio": "My name is Sersif Abdeljalil, a developer passionate about modern web technologies and digital innovation. I design interactive and dynamic solutions by combining my skills in React.js, Node.js, and Three.js to deliver immersive user experiences.",
+      "education": {
+        "title": "Education",
+        "details": "Bachelor's degree in Computer Science and Applied Mathematics (specialized in web development and databases) - Chouaïb Doukkali University. Master's degree in Computer Engineering and Data Analysis (2IAD) - Chouaïb Doukkali University."
+      },
+      "experience": {
+        "title": "Experience",
+        "details": "Development of a mobile library management application for the Ennajah library in El Jadida (2024-2025)."
+      },
+      "downloadCV": "Download my CV"
+    },
+    "skills": {
+      "title": "My Skills",
+      "categories": {
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "3d": "3D & Animation",
+        "iot": "IoT & Embedded",
+        "database": "Databases",
+        "design": "UI/UX Design",
+        "tools": "Tools & DevOps"
+      }
+    },
+    "projects": {
+      "title": "My Projects",
+      "featured": "Featured",
+       "discover3D": "Discover my 3D projects",
+  "sourceCode": "Source code",
+      "categories": {
+        "all": "All",
+        "fullstack": "Full Stack",
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "mobile": "Mobile",
+        "web": "Web"
+      },
+      "searchPlaceholder": "Search for a project...",
+      "noProjectsFound": "No projects match your search.",
+      "viewDetails": "Click for more details",
+      "returnBack": "Click to return",
+      "description": "Description",
+      "technologies": "Technologies used",
+      "features": "Features",
+      "demo": "Demo",
+      "sourceCode": "Source code",
+      "discover3D": "Discover my projects in 3D",
+      "noLinkAvailable": "No link available"
+    },
+    "contact": {
+      "title": "Contact Me",
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "message": "Message",
+        "send": "Send message",
+        "sending": "Sending...",
+        "success": "Your message has been sent successfully! I will respond as soon as possible.",
+        "error": "An error occurred while sending the message. Please try again later.",
+        "connectionError": "An error occurred while connecting to the server. Please check your internet connection and try again.",
+        "validation": {
+          "nameRequired": "Name is required",
+          "emailRequired": "Email is required",
+          "emailInvalid": "Invalid email format",
+          "messageRequired": "Message is required",
+          "messageTooShort": "Message must contain at least 10 characters"
+        }
+      },
+      "info": {
+        "email": "Email",
+        "phone": "Phone",
+        "location": "Location"
+      }
+    },
+    "loading": {
+      "title": "WELCOME",
+      "messages": [
+        "Loading 3D experience...",
+        "Preparing 3D models...",
+        "Initializing shaders...",
+        "Configuring materials...",
+        "Loading textures...",
+        "Calibrating lights...",
+        "Almost ready..."
+      ]
+    },
+    "language": {
+      "select": "Select a language",
+      "fr": "French",
+      "en": "English",
+      "ar": "Arabic"
+    }
+  }

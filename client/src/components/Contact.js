@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Send, Facebook } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Facebook, Send } from 'lucide-react';
 
 // Composant 3D pour la section Contact
 function ContactSphere() {
@@ -20,6 +21,7 @@ function ContactSphere() {
 }
 
 function Contact() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -45,19 +47,19 @@ function Contact() {
     const errors = {};
     
     if (!formData.name.trim()) {
-      errors.name = 'Le nom est requis';
+      errors.name = t('contact.form.validation.nameRequired');
     }
     
     if (!formData.email.trim()) {
-      errors.email = 'L\'email est requis';
+      errors.email = t('contact.form.validation.emailRequired');
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      errors.email = 'Format d\'email invalide';
+      errors.email = t('contact.form.validation.emailInvalid');
     }
     
     if (!formData.message.trim()) {
-      errors.message = 'Le message est requis';
+      errors.message = t('contact.form.validation.messageRequired');
     } else if (formData.message.trim().length < 10) {
-      errors.message = 'Le message doit contenir au moins 10 caractères';
+      errors.message = t('contact.form.validation.messageTooShort');
     }
     
     setFormErrors(errors);
@@ -89,7 +91,7 @@ function Contact() {
       if (response.ok) {
         setSubmitResult({
           success: true,
-          message: data.message || 'Votre message a été envoyé avec succès ! Je vous répondrai dès que possible.'
+          message: t('contact.form.success')
         });
         
         // Réinitialiser le formulaire après succès
@@ -106,7 +108,7 @@ function Contact() {
         
         setSubmitResult({
           success: false,
-          message: data.message || 'Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer plus tard.'
+          message: t('contact.form.error')
         });
       }
     } catch (error) {
@@ -114,7 +116,7 @@ function Contact() {
       
       setSubmitResult({
         success: false,
-        message: 'Une erreur est survenue lors de la connexion au serveur. Veuillez vérifier votre connexion internet et réessayer.'
+        message: t('contact.form.connectionError')
       });
     } finally {
       setIsSubmitting(false);
@@ -129,7 +131,7 @@ function Contact() {
   return (
     <section className="contact section">
       <div className="container">
-        <h2 className="section-title">Me Contacter</h2>
+        <h2 className="section-title">{t('contact.title')}</h2>
         
         <div className="contact-content">
           <div className="contact-info">
@@ -139,7 +141,7 @@ function Contact() {
                   <Mail size={24} />
                 </div>
                 <div className="info-details">
-                  <h3>Email</h3>
+                  <h3>{t('contact.info.email')}</h3>
                   <p><a href="mailto:abdosarsif28@gmail.com">abdosarsif28@gmail.com</a></p>
                 </div>
               </div>
@@ -149,7 +151,7 @@ function Contact() {
                   <Phone size={24} />
                 </div>
                 <div className="info-details">
-                  <h3>Téléphone</h3>
+                  <h3>{t('contact.info.phone')}</h3>
                   <p><a href="tel:+212 695489581">+212 695489561</a></p>
                 </div>
               </div>
@@ -159,8 +161,8 @@ function Contact() {
                   <MapPin size={24} />
                 </div>
                 <div className="info-details">
-                  <h3>Localisation</h3>
-                  <p>Eljadida , Maroc</p>
+                  <h3>{t('contact.info.location')}</h3>
+                  <p>Eljadida, Maroc</p>
                 </div>
               </div>
               
@@ -190,7 +192,7 @@ function Contact() {
           <div className="contact-form-container">
             <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-group">
-                <label htmlFor="name">Nom</label>
+                <label htmlFor="name">{t('contact.form.name')}</label>
                 <input
                   type="text"
                   id="name"
@@ -203,7 +205,7 @@ function Contact() {
               </div>
               
               <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">{t('contact.form.email')}</label>
                 <input
                   type="email"
                   id="email"
@@ -216,7 +218,7 @@ function Contact() {
               </div>
               
               <div className="form-group">
-                <label htmlFor="message">Message</label>
+                <label htmlFor="message">{t('contact.form.message')}</label>
                 <textarea
                   id="message"
                   name="message"
@@ -233,7 +235,7 @@ function Contact() {
                 className="btn btn-primary submit-btn btn-icon"
                 disabled={isSubmitting}
               >
-                <span>{isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'}</span>
+                <span>{isSubmitting ? t('contact.form.sending') : t('contact.form.send')}</span>
                 <Send size={20} />
               </button>
               
@@ -246,6 +248,26 @@ function Contact() {
           </div>
         </div>
       </div>
+      
+      {/* Styles pour adaptation RTL */}
+      <style jsx>{`
+        /* Styles pour support RTL */
+        :global(.rtl) .contact-form {
+          text-align: right;
+        }
+        
+        :global(.rtl) .info-item {
+          flex-direction: row-reverse;
+        }
+        
+        :global(.rtl) .btn-icon {
+          flex-direction: row-reverse;
+        }
+        
+        :global(.rtl) .form-group label {
+          text-align: right;
+        }
+      `}</style>
     </section>
   );
 }

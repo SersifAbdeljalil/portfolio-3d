@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Eye, Github, ExternalLink, Code, Database, Server, Layout, Globe, BookOpen, PieChart } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Float, MeshDistortMaterial, Sphere } from '@react-three/drei';
+import { Eye, Github, ExternalLink, Code, Database, Server, Layout, Globe, PieChart } from 'lucide-react';
 import roomBookingImage from './assets/images/room-booking.png';
 import can from './assets/images/Can.png';
 import chu from './assets/images/CHU.png';
@@ -9,6 +10,7 @@ import emploi from './assets/images/emplois.png';
 import prof from './assets/images/prof.png';
 import smartMetre from './assets/images/Smart-Metre.png';
 import TTS from './assets/images/TTS.png';
+import './Projects.css'; // Import the CSS file
 
 function ProjectsVisual() {
   return (
@@ -42,6 +44,7 @@ function ProjectsVisual() {
 }
 
 function ProjectCard({ project }) {
+  const { t } = useTranslation();
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleLinkClick = (e) => {
@@ -66,7 +69,7 @@ function ProjectCard({ project }) {
         <div className="project-card-front">
           <div className="project-image">
             <img src={project.imageUrl || '/assets/images/project-placeholder.jpg'} alt={project.title} loading="lazy" />
-            {project.featured && <span className="featured-badge">Mis en avant</span>}
+            {project.featured && <span className="featured-badge">{t('projects.featured')}</span>}
           </div>
           <div className="project-content">
             <div className="project-header">
@@ -92,11 +95,11 @@ function ProjectCard({ project }) {
                 className="btn btn-secondary btn-sm btn-icon"
                 onClick={(e) => handleLinkClick(e)}
               >
-                <span>Cliquez pour plus de détails</span>
+                <span>{t('projects.viewDetails')}</span>
                 <Github size={16} />
               </a>
             ) : (
-              <span>Cliquez pour plus de détails</span>
+              <span>{t('projects.viewDetails')}</span>
             )}
           </div>
         </div>
@@ -104,15 +107,15 @@ function ProjectCard({ project }) {
         <div className="project-card-back">
           <h3 className="project-title">{project.title}</h3>
           <div className="project-details">
-            <h4>Description</h4>
+            <h4>{t('projects.description')}</h4>
             <p>{project.description}</p>
-            <h4>Technologies utilisées</h4>
+            <h4>{t('projects.technologies')}</h4>
             <div className="project-tech">
               {project.technologies && project.technologies.map((tech, index) => (
                 <span key={index} className="tech-tag">{tech}</span>
               ))}
             </div>
-            <h4>Fonctionnalités</h4>
+            <h4>{t('projects.features')}</h4>
             <ul className="project-features">
               {project.features && project.features.map((feature, index) => (
                 <li key={index}>{feature}</li>
@@ -127,7 +130,7 @@ function ProjectCard({ project }) {
                   className="btn btn-primary btn-sm btn-icon"
                   onClick={handleLinkClick}
                 >
-                  <span>Démo</span>
+                  <span>{t('projects.demo')}</span>
                   <Eye size={16} />
                 </a>
               )}
@@ -139,14 +142,14 @@ function ProjectCard({ project }) {
                   className="btn btn-secondary btn-sm btn-icon"
                   onClick={handleLinkClick}
                 >
-                  <span>Code source</span>
+                  <span>{t('projects.sourceCode')}</span>
                   <Github size={16} />
                 </a>
               )}
             </div>
           </div>
           <div className="card-flip-info">
-            <span>Cliquez pour revenir</span>
+            <span>{t('projects.returnBack')}</span>
           </div>
         </div>
       </div>
@@ -155,6 +158,7 @@ function ProjectCard({ project }) {
 }
 
 export default function Projects() {
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProjects, setFilteredProjects] = useState([]);
@@ -165,7 +169,7 @@ export default function Projects() {
       id: 1,
       title: "Application de Revente de Tickets CAN2025",
       description: "Application permettant la gestion et la revente de tickets pour la Coupe d'Afrique des Nations 2025. Le projet est divisé en deux parties principales: frontend et backend.",
-      imageUrl:can,
+      imageUrl: can,
       category: "fullstack",
       featured: true,
       technologies: ["React.js", "CSS", "MySQL", "JWT", "Node.js", "Express"],
@@ -304,17 +308,17 @@ export default function Projects() {
   }, [activeFilter, searchQuery]);
 
   const categories = [
-    { id: "all", name: "Tous" },
-    { id: "fullstack", name: "Full Stack" },
-    { id: "frontend", name: "Frontend" },
-    { id: "backend", name: "Backend" },
-    { id: "mobile", name: "Mobile" },
-    { id: "web", name: "Web" }
+    { id: "all", name: t('projects.categories.all') },
+    { id: "fullstack", name: t('projects.categories.fullstack') },
+    { id: "frontend", name: t('projects.categories.frontend') },
+    { id: "backend", name: t('projects.categories.backend') },
+    { id: "mobile", name: t('projects.categories.mobile') },
+    { id: "web", name: t('projects.categories.web') }
   ];
 
   return (
     <section className="projects-section">
-      <h2 className="section-title">Mes Projets</h2>
+      <h2 className="section-title">{t('projects.title')}</h2>
       <div className="projects-controls">
         <div className="project-filters">
           {categories.map((category) => (
@@ -331,7 +335,7 @@ export default function Projects() {
           <input
             type="text"
             className="search-input"
-            placeholder="Rechercher un projet..."
+            placeholder={t('projects.searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -344,411 +348,45 @@ export default function Projects() {
           ))
         ) : (
           <div className="no-projects">
-            <p>Aucun projet ne correspond à votre recherche.</p>
+            <p>{t('projects.noProjectsFound')}</p>
           </div>
         )}
       </div>
+      
       <div className="projects-3d">
-        <h3 className="projects-3d-title">Découvrez mes projets en 3D</h3>
-        <div className="three-container">
-          <ProjectsVisual />
+        <h3 className="projects-3d-title">{t('projects.discover3D')}</h3>
+        <div className="featured-3d-project">
+          <div className="featured-3d-content">
+            <h4 className="project-title-3d">Portfolio 3D Interactif</h4>
+            <p className="project-description-3d">
+              Site web portfolio personnel mettant en valeur mes projets et compétences avec des animations 3D immersives
+              et un design moderne. Le site est multilingue et offre une expérience utilisateur fluide et interactive.
+            </p>
+            <div className="project-tech-3d">
+              <span className="tech-tag">React.js</span>
+              <span className="tech-tag">Three.js</span>
+              <span className="tech-tag">Node.js (Express)</span>
+              <span className="tech-tag">CSS</span>
+              <span className="tech-tag">MySQL</span>
+              <span className="tech-tag">i18n</span>
+            </div>
+            <div className="project-links-3d">
+              <a 
+                href="https://github.com/SersifAbdeljalil/portfolio-3d" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="btn btn-secondary btn-sm btn-icon"
+              >
+                <span>{t('projects.sourceCode')}</span>
+                <Github size={16} />
+              </a>
+            </div>
+          </div>
+          <div className="three-container">
+            <ProjectsVisual />
+          </div>
         </div>
       </div>
     </section>
   );
 }
-
-// CSS pour le composant
-const styles = `
-.projects-section {
-  padding: 2rem 0;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.section-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #8b5cf6;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.projects-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  background-color: rgba(15, 15, 35, 0.5);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(139, 92, 246, 0.2);
-}
-
-.project-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
-}
-
-.filter-btn {
-  padding: 0.5rem 1rem;
-  background-color: rgba(30, 30, 60, 0.6);
-  color: #a5b4fc;
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 500;
-}
-
-.filter-btn:hover {
-  background-color: rgba(139, 92, 246, 0.2);
-  color: #c4b5fd;
-  transform: translateY(-2px);
-}
-
-.filter-btn.active {
-  background-color: #8b5cf6;
-  color: white;
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.5);
-}
-
-.project-search {
-  display: flex;
-  justify-content: center;
-}
-
-.search-input {
-  width: 100%;
-  max-width: 500px;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  background-color: rgba(30, 30, 60, 0.6);
-  color: #ffffff;
-  font-size: 1rem;
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: #8b5cf6;
-  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.3);
-}
-
-.search-input::placeholder {
-  color: #a5b4fc;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
-}
-
-.project-card {
-  background-color: transparent;
-  perspective: 1000px;
-  height: 450px;
-  cursor: pointer;
-}
-
-.project-card.featured {
-  grid-column: span 2;
-}
-
-.project-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-}
-
-.project-card:hover .project-card-inner {
-  transform: scale(1.03);
-}
-
-.project-card.flipped .project-card-inner {
-  transform: rotateY(180deg);
-}
-
-.project-card-front, .project-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(30, 30, 60, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(139, 92, 246, 0.2);
-}
-
-.project-card-back {
-  transform: rotateY(180deg);
-  padding: 1.5rem;
-  overflow-y: auto;
-  text-align: left;
-}
-
-.project-image {
-  height: 180px;
-  overflow: hidden;
-  position: relative;
-}
-
-.project-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.project-card:hover .project-image img {
-  transform: scale(1.1);
-}
-
-.featured-badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  z-index: 2;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.project-content {
-  padding: 1.5rem;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-
-.project-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
-}
-
-.project-icon {
-  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-
-.project-title {
-  font-size: 1.25rem;
-  color: #c4b5fd;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
-
-.project-description {
-  font-size: 0.875rem;
-  margin-bottom: 1rem;
-  color: #e2e8f0;
-  flex-grow: 1;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  line-height: 1.5;
-}
-
-.project-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.tech-tag {
-  background-color: rgba(139, 92, 246, 0.2);
-  color: #c4b5fd;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-}
-
-.card-flip-info {
-  padding: 0.5rem;
-  font-size: 0.75rem;
-  color: #a5b4fc;
-  background-color: rgba(139, 92, 246, 0.1);
-  border-top: 1px solid rgba(139, 92, 246, 0.2);
-}
-
-.project-details h4 {
-  font-size: 1rem;
-  color: #c4b5fd;
-  margin: 1rem 0 0.5rem;
-  font-weight: 600;
-}
-
-.project-features {
-  padding-left: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.project-features li {
-  margin-bottom: 0.5rem;
-  color: #e2e8f0;
-  font-size: 0.875rem;
-  list-style-type: circle;
-}
-
-.project-links {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.875rem;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-  color: white;
-  border: none;
-}
-
-.btn-secondary {
-  background-color: transparent;
-  color: #c4b5fd;
-  border: 1px solid #8b5cf6;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.btn-primary:hover {
-  background: linear-gradient(135deg, #9f7aea, #7c3aed);
-}
-
-.btn-secondary:hover {
-  background-color: rgba(139, 92, 246, 0.1);
-}
-
-.projects-3d {
-  background-color: rgba(30, 30, 60, 0.6);
-  border-radius: 1rem;
-  overflow: hidden;
-  padding: 1.5rem;
-  margin-top: 2rem;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(139, 92, 246, 0.2);
-}
-
-.projects-3d-title {
-  color: #c4b5fd;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-}
-
-.three-container {
-  height: 300px;
-  border-radius: 0.75rem;
-  overflow: hidden;
-}
-
-.no-projects {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 3rem;
-  background-color: rgba(30, 30, 60, 0.6);
-  border-radius: 1rem;
-  color: #c4b5fd;
-}
-
-@media (max-width: 1024px) {
-  .project-card.featured {
-    grid-column: span 1;
-  }
-  
-  .projects-grid {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  }
-}
-
-@media (max-width: 768px) {
-  .projects-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1rem;
-  }
-  
-  .project-card {
-    height: 400px;
-  }
-}
-
-@media (max-width: 480px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .projects-controls {
-    padding: 1rem;
-  }
-  
-  .filter-btn {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.875rem;
-  }
-}
-
-/* Animation styles */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.project-card {
-  animation: fadeIn 0.6s ease-out forwards;
-}
-
-.project-card:nth-child(2) { animation-delay: 0.1s; }
-.project-card:nth-child(3) { animation-delay: 0.2s; }
-.project-card:nth-child(4) { animation-delay: 0.3s; }
-.project-card:nth-child(5) { animation-delay: 0.4s; }
-.project-card:nth-child(6) { animation-delay: 0.5s; }
-.project-card:nth-child(7) { animation-delay: 0.6s; }
-`;
-
-// Add styles to the component
-const styleTag = document.createElement('style');
-styleTag.innerHTML = styles;
-document.head.appendChild(styleTag);

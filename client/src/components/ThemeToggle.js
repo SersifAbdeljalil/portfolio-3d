@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Sun, Moon } from 'lucide-react';
 
 function ThemeToggle() {
+  const { t } = useTranslation();
+  
   // État initial basé sur les préférences de l'utilisateur
   const [isDarkMode, setIsDarkMode] = useState(() => {
     // Vérifier si le thème est déjà enregistré
@@ -35,7 +38,7 @@ function ThemeToggle() {
     <button
       className="theme-toggle"
       onClick={toggleTheme}
-      aria-label={isDarkMode ? "Passer au mode jour" : "Passer au mode nuit"}
+      aria-label={isDarkMode ? t('theme.lightMode') : t('theme.darkMode')}
     >
       {isDarkMode ? (
         <Sun size={24} />

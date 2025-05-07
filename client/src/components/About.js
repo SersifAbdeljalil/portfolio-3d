@@ -1,55 +1,51 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Download, GraduationCap, Briefcase } from 'lucide-react';
 import profileImg from './assets/images/profile.jpg';
 
 function About() {
+  const { t } = useTranslation();
+
   return (
     <section className="about section">
       <div className="container">
-        <h2 className="section-title">À Propos de Moi</h2>
+        <h2 className="section-title">{t('about.title')}</h2>
 
         <div className="about-content">
           <div className="about-text">
             <p>
-              Bonjour ! Je suis un développeur Full Stack passionné par la création d'expériences
-              web interactives et immersives. Avec une expertise en React.js, Three.js et Node.js,
-              je construis des applications web modernes qui combinent fonctionnalité et design attrayant.
+              {t('about.intro')}
             </p>
 
             <p>
-              Je m'appelle <strong>Sersif Abdeljalil</strong>, un développeur passionné par
-              les technologies web modernes et l'innovation numérique. Je conçois des solutions interactives 
-              et dynamiques en combinant mes compétences en <strong>React.js</strong>, <strong>Node.js</strong>, et 
-              <strong>Three.js</strong> pour offrir des expériences utilisateur immersives.
+              {t('about.bio')}
             </p>
 
             <div className="about-details">
               <div className="about-detail">
                 <h3>
                   <GraduationCap size={24} className="detail-icon" />
-                  Éducation
+                  {t('about.education.title')}
                 </h3>
                 <p>
-                  Licence en informatique et mathématiques appliquées (spécialité développement web et BDD) - 
-                  Université Chouaïb Doukkali. <br />
-                  Master en ingénierie informatique et analyse de données (2IAD) - Université Chouaïb Doukkali.
+                  {t('about.education.details')}
                 </p>
               </div>
 
               <div className="about-detail">
                 <h3>
                   <Briefcase size={24} className="detail-icon" />
-                  Expérience
+                  {t('about.experience.title')}
                 </h3>
                 <p>
-                  Développement d'une <strong>application mobile de gestion de bibliothèque</strong> pour la bibliothèque Ennajah à El Jadida (2024-2025).
+                  {t('about.experience.details')}
                 </p>
               </div>
             </div>
 
             <div className="about-cta">
               <a href="/assets/documents/CV.pdf" className="btn btn-secondary btn-icon" download>
-                <span>Télécharger mon CV</span>
+                <span>{t('about.downloadCV')}</span>
                 <Download size={20} />
               </a>
             </div>
@@ -286,6 +282,19 @@ function About() {
             padding: 0.6rem 1.2rem;
             font-size: 0.9rem;
           }
+        }
+        
+        /* Ajustements pour RTL */
+        :global(.rtl) .about-text {
+          text-align: right;
+        }
+        
+        :global(.rtl) .about-detail h3 {
+          flex-direction: row-reverse;
+        }
+        
+        :global(.rtl) .btn {
+          flex-direction: row-reverse;
         }
       `}</style>
     </section>

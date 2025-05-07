@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Code, Server, Database, Cpu, Wrench, PenTool, Box } from 'lucide-react';
 
 const SkillsVisual = () => {
+  const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState('frontend');
   const [animateSkills, setAnimateSkills] = useState(false);
   
@@ -18,15 +20,17 @@ const SkillsVisual = () => {
   }, [activeCategory]);
 
   const categories = [
-    { id: 'frontend', name: 'Frontend', icon: <Code size={20} /> },
-    { id: 'backend', name: 'Backend', icon: <Server size={20} /> },
-    { id: '3d', name: '3D & Animation', icon: <Box size={20} /> },
-    { id: 'iot', name: 'IoT & Embarqué', icon: <Cpu size={20} /> },
-    { id: 'database', name: 'Bases de données', icon: <Database size={20} /> },
-    { id: 'design', name: 'UI/UX Design', icon: <PenTool size={20} /> },
-    { id: 'tools', name: 'Outils & DevOps', icon: <Wrench size={20} /> },
+    { id: 'frontend', name: t('skills.categories.frontend'), icon: <Code size={20} /> },
+    { id: 'backend', name: t('skills.categories.backend'), icon: <Server size={20} /> },
+    { id: '3d', name: t('skills.categories.3d'), icon: <Box size={20} /> },
+    { id: 'iot', name: t('skills.categories.iot'), icon: <Cpu size={20} /> },
+    { id: 'database', name: t('skills.categories.database'), icon: <Database size={20} /> },
+    { id: 'design', name: t('skills.categories.design'), icon: <PenTool size={20} /> },
+    { id: 'tools', name: t('skills.categories.tools'), icon: <Wrench size={20} /> },
   ];
 
+  // Les données des compétences sont restées les mêmes car elles n'ont pas besoin de traduction
+  // (ce sont des noms de technologies qui sont généralement les mêmes dans toutes les langues)
   const skillsData = {
     frontend: [
       { name: 'HTML5', badge: 'https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white', level: 95 },
@@ -148,10 +152,24 @@ const SkillsVisual = () => {
 };
 
 export default function Skills() {
+  const { t } = useTranslation();
+  
   return (
     <section className="skills-section">
-      <h2 className="section-title">Mes Compétences</h2>
+      <h2 className="section-title">{t('skills.title')}</h2>
       <SkillsVisual />
+      
+      {/* Styles pour adaptation RTL */}
+      <style jsx>{`
+        /* Styles pour support RTL */
+        :global(.rtl) .category-tab {
+          flex-direction: row-reverse;
+        }
+        
+        :global(.rtl) .skill-header {
+          flex-direction: row-reverse;
+        }
+      `}</style>
     </section>
   );
 }

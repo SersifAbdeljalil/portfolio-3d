@@ -1,0 +1,139 @@
+{
+    "nav": {
+      "home": "Accueil",
+      "about": "À propos",
+      "skills": "Compétences",
+      "projects": "Projets",
+      "contact": "Contact"
+    },
+    "footer": {
+      "description": "Développeur Full Stack & 3D spécialisé en React.js, Three.js et Node.js. Je crée des expériences web interactives et immersives.",
+      "navigation": "Navigation",
+      "contact": "Contact",
+      "socialNetworks": "Réseaux sociaux",
+      "allRightsReserved": "Tous droits réservés"
+    },
+    "home": {
+      "title": "SERSIF Abdeljalil",
+      "subtitle": "Développeur Full Stack",
+      "skills": [
+        "React.js",
+        "Three.js",
+        "Node.js",
+        "MySQL",
+        "Animation 3D",
+        "WebGL"
+      ],
+      "description": "Bienvenue dans mon univers créatif où je donne vie à vos idées avec des expériences web interactives et immersives. Spécialisé en React, Three.js et Node.js, je crée des applications qui allient design et fonctionnalité.",
+      "viewProjects": "Voir mes projets",
+      "contactMe": "Me contacter",
+      "highlights": {
+        "frontend": {
+          "title": "Front-end",
+          "description": "Création d'interfaces réactives et intuitives avec React et Three.js"
+        },
+        "backend": {
+          "title": "Back-end",
+          "description": "Développement d'APIs robustes avec Node.js, Express et MySQL"
+        },
+        "animation": {
+          "title": "3D & Animation",
+          "description": "Création d'expériences immersives avec Three.js et WebGL"
+        }
+      }
+    },
+    "about": {
+      "title": "À Propos de Moi",
+      "intro": "Bonjour ! Je suis un développeur Full Stack passionné par la création d'expériences web interactives et immersives. Avec une expertise en React.js, Three.js et Node.js, je construis des applications web modernes qui combinent fonctionnalité et design attrayant.",
+      "bio": "Je m'appelle Sersif Abdeljalil, un développeur passionné par les technologies web modernes et l'innovation numérique. Je conçois des solutions interactives et dynamiques en combinant mes compétences en React.js, Node.js, et Three.js pour offrir des expériences utilisateur immersives.",
+      "education": {
+        "title": "Éducation",
+        "details": "Licence en informatique et mathématiques appliquées (spécialité développement web et BDD) - Université Chouaïb Doukkali. Master en ingénierie informatique et analyse de données (2IAD) - Université Chouaïb Doukkali."
+      },
+      "experience": {
+        "title": "Expérience",
+        "details": "Développement d'une application mobile de gestion de bibliothèque pour la bibliothèque Ennajah à El Jadida (2024-2025)."
+      },
+      "downloadCV": "Télécharger mon CV"
+    },
+    "skills": {
+      "title": "Mes Compétences",
+      "categories": {
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "3d": "3D & Animation",
+        "iot": "IoT & Embarqué",
+        "database": "Bases de données",
+        "design": "UI/UX Design",
+        "tools": "Outils & DevOps"
+      }
+    },
+    "projects": {
+      "title": "Mes Projets",
+      "featured": "Mis en avant",
+       "discover3D": "Découvrez mes projets en 3D",
+  "sourceCode": "Code source",
+      "categories": {
+        "all": "Tous",
+        "fullstack": "Full Stack",
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "mobile": "Mobile",
+        "web": "Web"
+      },
+      "searchPlaceholder": "Rechercher un projet...",
+      "noProjectsFound": "Aucun projet ne correspond à votre recherche.",
+      "viewDetails": "Cliquez pour plus de détails",
+      "returnBack": "Cliquez pour revenir",
+      "description": "Description",
+      "technologies": "Technologies utilisées",
+      "features": "Fonctionnalités",
+      "demo": "Démo",
+      "sourceCode": "Code source",
+      "discover3D": "Découvrez mes projets en 3D",
+      "noLinkAvailable": "Aucun lien disponible"
+    },
+    "contact": {
+      "title": "Me Contacter",
+      "form": {
+        "name": "Nom",
+        "email": "Email",
+        "message": "Message",
+        "send": "Envoyer le message",
+        "sending": "Envoi en cours...",
+        "success": "Votre message a été envoyé avec succès ! Je vous répondrai dès que possible.",
+        "error": "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer plus tard.",
+        "connectionError": "Une erreur est survenue lors de la connexion au serveur. Veuillez vérifier votre connexion internet et réessayer.",
+        "validation": {
+          "nameRequired": "Le nom est requis",
+          "emailRequired": "L'email est requis",
+          "emailInvalid": "Format d'email invalide",
+          "messageRequired": "Le message est requis",
+          "messageTooShort": "Le message doit contenir au moins 10 caractères"
+        }
+      },
+      "info": {
+        "email": "Email",
+        "phone": "Téléphone",
+        "location": "Localisation"
+      }
+    },
+    "loading": {
+      "title": "BIENVENUE",
+      "messages": [
+        "Chargement de l'expérience 3D...",
+        "Préparation des modèles 3D...",
+        "Initialisation des shaders...",
+        "Configuration des matériaux...",
+        "Chargement des textures...",
+        "Calibration des lumières...",
+        "Presque prêt..."
+      ]
+    },
+    "language": {
+      "select": "Sélectionner une langue",
+      "fr": "Français",
+      "en": "Anglais",
+      "ar": "Arabe"
+    }
+  }
