@@ -44,7 +44,7 @@ function LoadingScreen() {
   return (
     <div className="loading-screen">
       <div className="loading-content">
-        <div className="loading-logo">VN</div>
+        <div className="loading-logo">WELCOM</div>
         
         <div className="progress-container">
           <div className="progress-bar">

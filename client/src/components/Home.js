@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Float, MeshDistortMaterial, Sphere } from '@react-three/drei';
-import * as THREE from 'three';
+import { ArrowRight, Mail, Code, Server, Boxes } from 'lucide-react';
 
 // Composant 3D pour l'arrière-plan
 function ThreeBackground() {
@@ -96,13 +96,13 @@ function Home() {
             </p>
             
             <div className="cta-buttons fade-in delay-3">
-              <Link to="/projects" className="btn btn-primary">
+              <Link to="/projects" className="btn btn-primary btn-icon">
                 <span>Voir mes projets</span>
-                <i className="fas fa-arrow-right"></i>
+                <ArrowRight size={20} />
               </Link>
-              <Link to="/contact" className="btn btn-secondary">
+              <Link to="/contact" className="btn btn-secondary btn-icon">
                 <span>Me contacter</span>
-                <i className="fas fa-envelope"></i>
+                <Mail size={20} />
               </Link>
             </div>
           </div>
@@ -117,7 +117,7 @@ function Home() {
         <div className="highlight-cards">
           <div className="highlight-card">
             <div className="card-icon">
-              <i className="fas fa-code"></i>
+              <Code size={24} />
             </div>
             <h3>Front-end</h3>
             <p>Création d'interfaces réactives et intuitives avec React et Three.js</p>
@@ -125,7 +125,7 @@ function Home() {
           
           <div className="highlight-card">
             <div className="card-icon">
-              <i className="fas fa-server"></i>
+              <Server size={24} />
             </div>
             <h3>Back-end</h3>
             <p>Développement d'APIs robustes avec Node.js, Express et MySQL</p>
@@ -133,7 +133,7 @@ function Home() {
           
           <div className="highlight-card">
             <div className="card-icon">
-              <i className="fas fa-cubes"></i>
+              <Boxes size={24} />
             </div>
             <h3>3D & Animation</h3>
             <p>Création d'expériences immersives avec Three.js et WebGL</p>

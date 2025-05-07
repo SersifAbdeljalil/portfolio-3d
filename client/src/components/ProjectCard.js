@@ -1,98 +1,73 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Eye, Github, ExternalLink, Globe, Layout, Database, Server, Code, PieChart } from 'lucide-react';
 
 function ProjectCard({ project }) {
-  const [isFlipped, setIsFlipped] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  
-  // Prévenir la propagation du clic pour les liens
-  const handleLinkClick = (e) => {
-    e.stopPropagation();
+  // Fonction pour obtenir l'icône du projet
+  const getProjectIcon = () => {
+    switch (project.category) {
+      case 'web':
+        return <Globe size={24} />;
+      case 'mobile':
+        return <Layout size={24} />;
+      case 'database':
+        return <Database size={24} />;
+      case 'backend':
+        return <Server size={24} />;
+      case 'frontend':
+        return <Code size={24} />;
+      case 'fullstack':
+        return <PieChart size={24} />;
+      default:
+        return <Code size={24} />;
+    }
   };
-  
+
   return (
-    <div 
-      className={`project-card ${project.featured ? 'featured' : ''}`}
-      onClick={() => setIsFlipped(!isFlipped)}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className={`project-card-inner ${isFlipped ? 'flipped' : ''}`}>
-        {/* Face avant de la carte */}
+    <div className={`project-card ${project.featured ? 'featured' : ''}`}>
+      <div className="project-card-inner">
+        {/* Face avant uniquement */}
         <div className="project-card-front">
           <div className="project-image">
-            <img 
-              src={project.imageUrl || '/assets/images/project-placeholder.jpg'} 
-              alt={project.title} 
+            <img
+              src={project.imageUrl || '/assets/images/project-placeholder.jpg'}
+              alt={project.title}
               loading="lazy"
             />
             {project.featured && <span className="featured-badge">Mis en avant</span>}
           </div>
-          
+
           <div className="project-content">
-            <h3 className="project-title">{project.title}</h3>
+            <div className="project-header">
+              <div className="project-icon">{getProjectIcon()}</div>
+              <h3 className="project-title">{project.title}</h3>
+            </div>
             <p className="project-description">{project.description}</p>
-            
+
             <div className="project-tech">
-              {project.technologies && project.technologies.slice(0, 4).map((tech, index) => (
+              {project.technologies?.slice(0, 4).map((tech, index) => (
                 <span key={index} className="tech-tag">{tech}</span>
               ))}
-              {project.technologies && project.technologies.length > 4 && (
+              {project.technologies?.length > 4 && (
                 <span className="tech-tag">+{project.technologies.length - 4}</span>
               )}
             </div>
           </div>
-          
+
+          {/* ✅ Ce lien remplace le flip */}
           <div className="card-flip-info">
-            <span>Cliquez pour plus de détails</span>
-          </div>
-        </div>
-        
-        {/* Face arrière de la carte */}
-        <div className="project-card-back">
-          <h3 className="project-title">{project.title}</h3>
-          
-          <div className="project-details">
-            <h4>Description</h4>
-            <p>{project.description}</p>
-            
-            <h4>Technologies utilisées</h4>
-            <div className="project-tech">
-              {project.technologies && project.technologies.map((tech, index) => (
-                <span key={index} className="tech-tag">{tech}</span>
-              ))}
-            </div>
-            
-            <div className="project-links">
-              {project.projectUrl && (
-                <a 
-                  href={project.projectUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn btn-primary btn-sm"
-                  onClick={handleLinkClick}
-                >
-                  <span>Voir le projet</span>
-                  <i className="fas fa-external-link-alt"></i>
-                </a>
-              )}
-              
-              {project.githubUrl && (
-                <a 
-                  href={project.githubUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn btn-secondary btn-sm"
-                  onClick={handleLinkClick}
-                >
-                  <span>Code source</span>
-                  <i className="fab fa-github"></i>
-                </a>
-              )}
-            </div>
-          </div>
-          
-          <div className="card-flip-info">
-            <span>Cliquez pour revenir</span>
+            {project.githubUrl ? (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary btn-sm"
+              >
+                <span>Cliquez pour plus </span>
+                <Github size={16} />
+              </a>
+            ) : (
+              <span>Aucun lien disponible</span>
+            )}
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
+import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Send, Facebook } from 'lucide-react';
 
 // Composant 3D pour la section Contact
 function ContactSphere() {
@@ -39,6 +40,7 @@ function Contact() {
     }
   };
   
+  // Validation côté client
   const validateForm = () => {
     const errors = {};
     
@@ -62,6 +64,7 @@ function Contact() {
     return Object.keys(errors).length === 0;
   };
   
+  // Soumission du formulaire avec envoi à l'API
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -72,22 +75,46 @@ function Contact() {
     setIsSubmitting(true);
     
     try {
-      // Simuler une requête API réussie
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setSubmitResult({
-        success: true,
-        message: 'Votre message a été envoyé avec succès ! Je vous répondrai dès que possible.'
+      // Envoyer les données au backend
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
       
-      // Réinitialiser le formulaire
-      setFormData({ name: '', email: '', message: '' });
+      const data = await response.json();
+      
+      if (response.ok) {
+        setSubmitResult({
+          success: true,
+          message: data.message || 'Votre message a été envoyé avec succès ! Je vous répondrai dès que possible.'
+        });
+        
+        // Réinitialiser le formulaire après succès
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        // Gérer les erreurs de validation du serveur
+        if (data.errors && Array.isArray(data.errors)) {
+          const serverErrors = {};
+          data.errors.forEach(err => {
+            serverErrors[err.param] = err.msg;
+          });
+          setFormErrors(serverErrors);
+        }
+        
+        setSubmitResult({
+          success: false,
+          message: data.message || 'Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer plus tard.'
+        });
+      }
     } catch (error) {
       console.error('Erreur lors de l\'envoi du message:', error);
       
       setSubmitResult({
         success: false,
-        message: 'Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer plus tard.'
+        message: 'Une erreur est survenue lors de la connexion au serveur. Veuillez vérifier votre connexion internet et réessayer.'
       });
     } finally {
       setIsSubmitting(false);
@@ -109,43 +136,43 @@ function Contact() {
             <div className="info-container">
               <div className="info-item">
                 <div className="info-icon">
-                  <i className="fas fa-envelope"></i>
+                  <Mail size={24} />
                 </div>
                 <div className="info-details">
                   <h3>Email</h3>
-                  <p><a href="mailto:votre.email@example.com">votre.email@example.com</a></p>
+                  <p><a href="mailto:abdosarsif28@gmail.com">abdosarsif28@gmail.com</a></p>
                 </div>
               </div>
               
               <div className="info-item">
                 <div className="info-icon">
-                  <i className="fas fa-phone"></i>
+                  <Phone size={24} />
                 </div>
                 <div className="info-details">
                   <h3>Téléphone</h3>
-                  <p><a href="tel:+33600000000">+33 6 00 00 00 00</a></p>
+                  <p><a href="tel:+212 695489581">+212 695489561</a></p>
                 </div>
               </div>
               
               <div className="info-item">
                 <div className="info-icon">
-                  <i className="fas fa-map-marker-alt"></i>
+                  <MapPin size={24} />
                 </div>
                 <div className="info-details">
                   <h3>Localisation</h3>
-                  <p>Votre ville, Pays</p>
+                  <p>Eljadida , Maroc</p>
                 </div>
               </div>
               
               <div className="social-links">
-                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                  <i className="fab fa-github"></i>
+                <a href="https://github.com/SersifAbdeljalil" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                  <Github size={20} />
                 </a>
-                <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                  <i className="fab fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/aabdeljalil-sersif-803624339/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <Linkedin size={20} />
                 </a>
-                <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                  <i className="fab fa-twitter"></i>
+                <a href="https://web.facebook.com/profile.php?id=100023069885044&_rdc=1&_rdr" target="_blank" rel="noopener noreferrer" aria-label="facebook">
+                  <Facebook size={20} />
                 </a>
               </div>
             </div>
@@ -203,10 +230,11 @@ function Contact() {
               
               <button
                 type="submit"
-                className="btn btn-primary submit-btn"
+                className="btn btn-primary submit-btn btn-icon"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'}
+                <span>{isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'}</span>
+                <Send size={20} />
               </button>
               
               {submitResult.message && (

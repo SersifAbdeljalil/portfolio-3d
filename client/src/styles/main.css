@@ -1758,4 +1758,453 @@
       grid-column: span 1;
     }
   }
+  /* ======== BACKGROUND SCENE STYLES ======== */
+
+/* Main background container */
+.background-scene {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -10; /* Keep it behind all content */
+  overflow: hidden;
+  pointer-events: none; /* Make it non-interactive so it doesn't block clicks */
+  isolation: isolate; /* Create a new stacking context */
+}
+
+/* Canvas styling */
+.background-scene canvas {
+  width: 100% !important;
+  height: 100% !important;
+  outline: none;
+  display: block; /* Prevent spacing issues */
+  transition: opacity 1s ease;
+}
+
+/* Transition effect for loading */
+.background-scene.loading canvas {
+  opacity: 0;
+}
+
+.background-scene.loaded canvas {
+  opacity: 1;
+}
+
+/* Overlay for better content readability - adjusted for theme */
+.background-scene::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+
+/* Theme-specific overlays */
+[data-theme="dark"] .background-scene::after {
+  background: radial-gradient(
+    circle at center,
+    rgba(5, 8, 22, 0.1) 0%,
+    rgba(5, 8, 22, 0.6) 100%
+  );
+}
+
+:root:not([data-theme="dark"]) .background-scene::after {
+  background: radial-gradient(
+    circle at center,
+    rgba(230, 233, 240, 0.3) 0%,
+    rgba(230, 233, 240, 0.9) 100%
+  );
+}
+
+/* Loading indicator inside background */
+.background-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+.background-loading .loader {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(108, 99, 255, 0.1);
+  border-radius: 50%;
+  border-top: 3px solid #6c63ff;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Fade in animation for smoother appearance */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.background-scene {
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* ======== Z-INDEX MANAGEMENT ======== */
+
+/* Main content containers - ensure proper stacking */
+.app,
+.container,
+.navigation,
+.main-content,
+.footer,
+section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Higher z-index for important interactive elements */
+.navigation {
+  z-index: 1000;
+}
+
+.mobile-menu-toggle,
+.nav-mobile.open {
+  z-index: 1001;
+}
+
+/* Proper positioning for the content */
+body.with-3d-background {
+  background-color: transparent !important;
+  position: relative;
+}
+
+/* ======== COMPONENT COMPATIBILITY FIXES ======== */
+
+/* Fix for other Three.js components to avoid conflicts */
+.three-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-large);
+  z-index: 2;
+}
+
+/* Proper isolation for additional 3D elements */
+.three-container canvas {
+  display: block;
+  outline: none;
+}
+
+/* Card styling compatibility fixes */
+.with-3d-background .card,
+.with-3d-background .highlight-card,
+.with-3d-background .project-card,
+.with-3d-background .skills-category,
+.with-3d-background .info-container,
+.with-3d-background .contact-form-container {
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(10px);
+  background-color: var(--card-bg);
+  border: var(--card-border);
+}
+
+/* Theme-specific card styling */
+[data-theme="dark"] .with-3d-background .card,
+[data-theme="dark"] .with-3d-background .highlight-card,
+[data-theme="dark"] .with-3d-background .project-card,
+[data-theme="dark"] .with-3d-background .skills-category,
+[data-theme="dark"] .with-3d-background .info-container,
+[data-theme="dark"] .with-3d-background .contact-form-container {
+  background-color: rgba(30, 30, 30, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:root:not([data-theme="dark"]) .with-3d-background .card,
+:root:not([data-theme="dark"]) .with-3d-background .highlight-card,
+:root:not([data-theme="dark"]) .with-3d-background .project-card,
+:root:not([data-theme="dark"]) .with-3d-background .skills-category,
+:root:not([data-theme="dark"]) .with-3d-background .info-container,
+:root:not([data-theme="dark"]) .with-3d-background .contact-form-container {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Fix project cards with 3D background */
+.project-card-inner {
+  background-color: transparent;
+}
+
+.project-card-front, 
+.project-card-back {
+  backface-visibility: hidden;
+  background-color: transparent;
+}
+
+[data-theme="dark"] .project-card-back {
+  background-color: rgba(30, 30, 30, 0.7);
+}
+
+:root:not([data-theme="dark"]) .project-card-back {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Fix for footer in dark mode */
+[data-theme="dark"] .footer {
+  background-color: rgba(10, 10, 10, 0.9);
+  position: relative;
+  z-index: 2;
+}
+
+:root:not([data-theme="dark"]) .footer {
+  background-color: rgba(248, 248, 248, 0.9);
+  position: relative;
+  z-index: 2;
+}
+
+/* Nav bar fixes */
+.navigation {
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .navigation {
+  background-color: rgba(5, 8, 22, 0.8);
+}
+
+:root:not([data-theme="dark"]) .navigation {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* ======== PERFORMANCE OPTIMIZATION ======== */
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .background-scene::after {
+    /* Stronger overlay on mobile for better readability */
+    background: radial-gradient(
+      circle at center,
+      rgba(5, 8, 22, 0.3) 0%,
+      rgba(5, 8, 22, 0.8) 100%
+    );
+  }
   
+  [data-theme="dark"] .background-scene::after {
+    background: radial-gradient(
+      circle at center,
+      rgba(5, 8, 22, 0.4) 0%,
+      rgba(5, 8, 22, 0.9) 100%
+    );
+  }
+  
+  :root:not([data-theme="dark"]) .background-scene::after {
+    background: radial-gradient(
+      circle at center,
+      rgba(230, 233, 240, 0.4) 0%,
+      rgba(230, 233, 240, 0.95) 100%
+    );
+  }
+}
+
+/* Small screen optimizations */
+@media (max-width: 480px) {
+  .background-scene::after {
+    /* Even stronger overlay for very small screens */
+    background: radial-gradient(
+      circle at center,
+      rgba(5, 8, 22, 0.5) 0%,
+      rgba(5, 8, 22, 0.95) 100%
+    );
+  }
+}
+
+/* Fix for specific sections with 3D backgrounds */
+.projects-3d,
+.skills-3d,
+.contact-3d {
+  position: relative;
+  z-index: 2;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+/* Contact form improvements */
+.contact-form-container {
+  position: relative;
+  z-index: 5;
+}
+
+/* Better visibility for form elements */
+.with-3d-background .form-group label {
+  font-weight: 600;
+}
+
+[data-theme="dark"] .with-3d-background .form-group input,
+[data-theme="dark"] .with-3d-background .form-group textarea {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-color);
+}
+
+:root:not([data-theme="dark"]) .with-3d-background .form-group input,
+:root:not([data-theme="dark"]) .with-3d-background .form-group textarea {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: var(--text-color);
+}
+
+/* Theme transition smoothing */
+.background-scene,
+.background-scene canvas,
+.background-scene::after,
+body,
+.navigation,
+.card,
+.highlight-card,
+.project-card,
+.skills-category,
+.info-container,
+.contact-form-container,
+.footer {
+  transition: all 0.3s ease;
+}
+/* Styles pour les icônes Lucide React */
+
+/* Reset des styles précédents de Font Awesome */
+i.fas, i.fab, i.fa {
+  font-family: inherit; /* Réinitialiser font-family */
+}
+
+/* Styles de base pour les icônes Lucide */
+.lucide {
+  stroke-width: 1.5;
+  stroke: currentColor;
+  fill: none;
+  vertical-align: middle;
+}
+
+/* Adaptation des styles pour les icônes dans les boutons */
+.btn .lucide {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.btn:hover .lucide {
+  transform: translateX(5px);
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Styles pour les icônes dans les cartes */
+.card-icon .lucide {
+  color: var(--white);
+  stroke-width: 1.5;
+  width: 24px;
+  height: 24px;
+}
+
+/* Styles pour les icônes dans les infos de contact */
+.info-icon .lucide {
+  color: var(--white);
+  stroke-width: 1.5;
+  width: 24px;
+  height: 24px;
+}
+
+/* Styles pour les icônes sociales */
+.social-links a .lucide {
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover .lucide {
+  transform: scale(1.2);
+}
+
+/* Styles pour les icônes de recherche */
+.search-icon .lucide {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary-color);
+}
+
+/* Styles spécifiques pour l'icône de toggle de thème */
+.theme-toggle .lucide {
+  stroke-width: 1.5;
+  transition: all 0.3s ease;
+  color: var(--primary-color);
+}
+
+.theme-toggle:hover .lucide {
+  transform: rotate(15deg);
+}
+
+/* Styles pour les icônes dans la navigation mobile */
+.mobile-menu-toggle .lucide {
+  stroke-width: 2;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+/* Adaptations pour le mode sombre */
+[data-theme="dark"] .lucide {
+  color: inherit;
+}
+
+[data-theme="dark"] .card-icon .lucide,
+[data-theme="dark"] .info-icon .lucide {
+  color: var(--white);
+}
+
+/* Animation pour certaines icônes */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-pulse .lucide {
+  animation: pulse 2s infinite;
+}
+
+/* Adaptation à la taille de l'écran */
+@media (max-width: 768px) {
+  .card-icon .lucide,
+  .info-icon .lucide {
+    width: 20px;
+    height: 20px;
+  }
+}
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.profile-image-square {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px; /* carrée avec coins très légèrement arrondis */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border: 2px solid #ccc;
+}

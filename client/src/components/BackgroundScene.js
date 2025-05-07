@@ -3,7 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Stars, Sphere, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
-// Composant particule pour l'arrière-plan
+// Particle component for the background
 function Particle({ position, size, color, speed }) {
   const ref = useRef();
   const initialPosition = useMemo(() => [...position], [position]);
@@ -11,7 +11,7 @@ function Particle({ position, size, color, speed }) {
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
     
-    // Mouvement de flottement personnalisé
+    // Custom floating movement
     ref.current.position.y = initialPosition[1] + Math.sin(time * speed) * 0.2;
     ref.current.position.x = initialPosition[0] + Math.cos(time * speed * 0.5) * 0.1;
     ref.current.rotation.z = time * 0.1;
@@ -32,7 +32,7 @@ function Particle({ position, size, color, speed }) {
   );
 }
 
-// Composant sphère centrale
+// Central sphere component
 function CentralSphere() {
   const sphereRef = useRef();
   
@@ -57,22 +57,22 @@ function CentralSphere() {
   );
 }
 
-// Composant ligne connectant des points
+// Connection line component
 function ConnectionLine({ start, end, color }) {
   const ref = useRef();
   
-  // Créer des points pour la courbe
+  // Create points for the curve
   const curve = useMemo(() => {
-    // Point de contrôle pour courber légèrement la ligne
+    // Control point to slightly curve the line
     const midPoint = new THREE.Vector3().addVectors(
       new THREE.Vector3(...start),
       new THREE.Vector3(...end)
     ).multiplyScalar(0.5);
     
-    // Ajouter un peu d'élévation au point de contrôle
+    // Add some elevation to the control point
     midPoint.y += 0.5;
     
-    // Créer la courbe
+    // Create the curve
     return new THREE.QuadraticBezierCurve3(
       new THREE.Vector3(...start),
       midPoint,
@@ -80,13 +80,13 @@ function ConnectionLine({ start, end, color }) {
     );
   }, [start, end]);
   
-  // Générer les points le long de la courbe
+  // Generate points along the curve
   const points = useMemo(() => {
     return curve.getPoints(20);
   }, [curve]);
   
   useFrame(({ clock }) => {
-    // Animation subtile de la ligne
+    // Subtle animation of the line
     const time = clock.getElapsedTime();
     
     if (ref.current && ref.current.material) {
@@ -117,12 +117,12 @@ function ConnectionLine({ start, end, color }) {
   );
 }
 
-// Composant d'effet de brouillard animé
+// Animated fog effect component
 function AnimatedFog() {
   useFrame(({ scene, clock }) => {
     const time = clock.getElapsedTime();
     if (scene.fog) {
-      // Animer légèrement la densité du brouillard
+      // Slightly animate fog density
       scene.fog.density = 0.015 + Math.sin(time * 0.2) * 0.005;
     }
   });
@@ -130,43 +130,58 @@ function AnimatedFog() {
   return null;
 }
 
-// Composant principal de l'arrière-plan
-function BackgroundScene() {
-  // Détecter le thème actuel
+// Main background component
+function BackgroundScene({ isLoading = false, onLoaded = () => {} }) {
+  // Detect current theme
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isReady, setIsReady] = useState(false);
   
   useEffect(() => {
-    // Fonction pour vérifier le thème
+    // Function to check theme
     const checkTheme = () => {
       const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
       setIsDarkMode(isDark);
     };
     
-    // Vérifier au chargement
+    // Check on load
     checkTheme();
     
-    // Observer les changements d'attribut sur l'élément HTML
+    // Observe attribute changes on HTML element
     const observer = new MutationObserver(checkTheme);
     observer.observe(document.documentElement, { attributes: true });
     
     return () => observer.disconnect();
   }, []);
 
-  // Adapter les couleurs en fonction du thème
+  // When component is ready
+  useEffect(() => {
+    // Simulate loading time (remove in production and use actual loader events)
+    const timer = setTimeout(() => {
+      setIsReady(true);
+      onLoaded();
+    }, 1000);
+    
+    return () => clearTimeout(timer);
+  }, [onLoaded]);
+
+  // Adapt colors based on theme
   const bgColor = isDarkMode ? '#050816' : '#e6e9f0';
   
-  // Générer des positions aléatoires pour les particules
+  // Generate random positions for particles
   const particlesData = useMemo(() => {
     const data = [];
-    for (let i = 0; i < 30; i++) {
+    // Reduce particle count to improve performance
+    const particleCount = window.innerWidth <= 768 ? 15 : 30;
+    
+    for (let i = 0; i < particleCount; i++) {
       const x = (Math.random() - 0.5) * 10;
       const y = (Math.random() - 0.5) * 10;
       const z = (Math.random() - 0.5) * 10;
       const size = Math.random() * 0.2 + 0.05;
       const speed = Math.random() * 0.5 + 0.5;
       
-      // Générer une couleur dans une palette harmonieuse
-      const baseHue = isDarkMode ? 0.6 : 0.7; // Bleu-violet vs bleu
+      // Generate a color in a harmonious palette
+      const baseHue = isDarkMode ? 0.6 : 0.7; // Blue-violet vs blue
       const hue = Math.random() * 0.1 + baseHue;
       const saturation = Math.random() * 0.3 + 0.7;
       const lightness = Math.random() * 0.3 + 0.5;
@@ -178,12 +193,15 @@ function BackgroundScene() {
     return data;
   }, [isDarkMode]);
   
-  // Générer des connexions entre certaines particules
+  // Generate connections between some particles
   const connections = useMemo(() => {
     const lines = [];
     
-    // Connecter quelques particules entre elles
-    for (let i = 0; i < 15; i++) {
+    // Reduce connections for better performance
+    const connectionCount = window.innerWidth <= 768 ? 8 : 15;
+    
+    // Connect some particles together
+    for (let i = 0; i < connectionCount; i++) {
       const startIndex = Math.floor(Math.random() * particlesData.length);
       let endIndex;
       
@@ -191,7 +209,7 @@ function BackgroundScene() {
         endIndex = Math.floor(Math.random() * particlesData.length);
       } while (endIndex === startIndex);
       
-      const baseHue = isDarkMode ? 0.6 : 0.7; // Bleu-violet vs bleu
+      const baseHue = isDarkMode ? 0.6 : 0.7; // Blue-violet vs blue
       lines.push({
         start: particlesData[startIndex].position,
         end: particlesData[endIndex].position,
@@ -202,32 +220,39 @@ function BackgroundScene() {
     return lines;
   }, [particlesData, isDarkMode]);
   
-  useEffect(() => {
-    // Effet pour décharger proprement les ressources 3D
-    return () => {
-      // Nettoyer Three.js (si nécessaire)
-    };
-  }, []);
-  
   return (
-    <div className="background-scene">
+    <div className={`background-scene ${isReady ? 'loaded' : 'loading'}`} aria-hidden="true">
+      {/* Loading indicator that fades out when ready */}
+      {isLoading && !isReady && (
+        <div className="background-loading">
+          <div className="loader"></div>
+        </div>
+      )}
+      
       <Canvas
         camera={{ position: [0, 0, 5], fov: 60 }}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ 
+          antialias: true, 
+          alpha: true,
+          powerPreference: "high-performance",
+          // Lower pixel ratio on mobile for better performance
+          pixelRatio: window.innerWidth <= 768 ? Math.min(window.devicePixelRatio, 1.5) : window.devicePixelRatio
+        }}
+        style={{ opacity: isReady ? 1 : 0 }}
       >
-        {/* Couleur de fond ajustée selon le thème */}
+        {/* Background color adjusted based on theme */}
         <color attach="background" args={[bgColor]} />
         
-        {/* Brouillard pour donner de la profondeur */}
+        {/* Fog for depth */}
         <fog attach="fog" args={[bgColor, 8, 25]} />
         <AnimatedFog />
         
-        {/* Éclairage */}
+        {/* Lighting */}
         <ambientLight intensity={0.2} />
         <pointLight position={[10, 10, 10]} intensity={0.5} />
         <pointLight position={[-10, -10, -10]} intensity={0.3} color="#6c63ff" />
         
-        {/* Contrôles de caméra limités */}
+        {/* Limited camera controls */}
         <OrbitControls
           enableZoom={false}
           enablePan={false}
@@ -239,12 +264,12 @@ function BackgroundScene() {
           dampingFactor={0.05}
         />
         
-        {/* Fond d'étoiles (uniquement en mode sombre) */}
+        {/* Stars background (dark mode only) */}
         {isDarkMode && (
           <Stars
             radius={100}
             depth={50}
-            count={2000}
+            count={window.innerWidth <= 768 ? 1000 : 2000}
             factor={4}
             saturation={0.5}
             fade
@@ -252,10 +277,10 @@ function BackgroundScene() {
           />
         )}
         
-        {/* Sphère centrale */}
+        {/* Central sphere */}
         <CentralSphere />
         
-        {/* Particules */}
+        {/* Particles */}
         {particlesData.map((particle, index) => (
           <Particle
             key={index}
@@ -266,7 +291,7 @@ function BackgroundScene() {
           />
         ))}
         
-        {/* Connexions entre particules */}
+        {/* Connections between particles */}
         {connections.map((connection, index) => (
           <ConnectionLine
             key={index}
