@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './LoadingScreen.css';
 
 function LoadingScreen() {
   const [progress, setProgress] = useState(0);
@@ -45,14 +44,7 @@ function LoadingScreen() {
   return (
     <div className="loading-screen">
       <div className="loading-content">
-        <div className="logo-container">
-          <h1 className="loading-logo">VN</h1>
-        </div>
-        
-        <div className="loading-sphere">
-          <div className="sphere"></div>
-          <div className="sphere-shadow"></div>
-        </div>
+        <div className="loading-logo">VN</div>
         
         <div className="progress-container">
           <div className="progress-bar">

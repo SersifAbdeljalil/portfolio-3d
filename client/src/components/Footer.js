@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Footer.css';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,7 +10,7 @@ function Footer() {
         <div className="footer-content">
           <div className="footer-info">
             <Link to="/" className="footer-logo">
-              <span>VN</span>
+              <span>SeRsIf Abdeljalil</span>
             </Link>
             <p className="footer-description">
               Développeur Full Stack & 3D spécialisé en React.js, Three.js et Node.js.
@@ -43,13 +42,13 @@ function Footer() {
             <h3>Réseaux sociaux</h3>
             <div className="social-links">
               <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <i className="fa fa-github"></i>
+                <i className="fab fa-github"></i>
               </a>
               <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <i className="fa fa-linkedin"></i>
+                <i className="fab fa-linkedin"></i>
               </a>
               <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                <i className="fa fa-twitter"></i>
+                <i className="fab fa-twitter"></i>
               </a>
             </div>
           </div>

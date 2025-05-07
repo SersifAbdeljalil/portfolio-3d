@@ -1,90 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Text, Float } from '@react-three/drei';
-import './Skills.css';
+import { OrbitControls, Float } from '@react-three/drei';
+import * as THREE from 'three';
 
-// Composant pour représenter une compétence en 3D
-function SkillCube({ position, size, color, text, rotationSpeed = 0.005 }) {
-  const [hovered, setHovered] = useState(false);
-  
+// Composant pour un cube de compétence 3D
+function SkillCube({ position, color, text }) {
   return (
     <Float
       speed={1.5}
       rotationIntensity={0.2}
-      floatIntensity={0.3}
+      floatIntensity={0.5}
       position={position}
     >
-      <mesh
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
-        scale={hovered ? size * 1.1 : size}
-      >
+      <mesh>
         <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial 
-          color={hovered ? "#ffffff" : color} 
-          metalness={0.5} 
-          roughness={0.2} 
-        />
+        <meshStandardMaterial color={color} metalness={0.5} roughness={0.2} />
       </mesh>
       
-      <Text
-        position={[0, 0, 0.6]}
-        fontSize={0.2}
-        color="#ffffff"
-        anchorX="center"
-        anchorY="middle"
-      >
-        {text}
-      </Text>
+      {/* Texte de compétence */}
+      <mesh position={[0, 0, 0.51]}>
+        <planeGeometry args={[0.8, 0.3]} />
+        <meshBasicMaterial transparent opacity={0.9} color="#000000" />
+      </mesh>
     </Float>
   );
 }
 
-// Grille de compétences 3D
-function SkillsGrid() {
-  const frontendSkills = [
-    { name: "React", color: "#61DAFB", position: [-1.5, 1, 0], size: 0.5 },
-    { name: "JavaScript", color: "#F7DF1E", position: [-0.5, 1, 0], size: 0.5 },
-    { name: "HTML5", color: "#E34F26", position: [0.5, 1, 0], size: 0.5 },
-    { name: "CSS3", color: "#1572B6", position: [1.5, 1, 0], size: 0.5 },
-    { name: "Three.js", color: "#000000", position: [-1.5, 0, 0], size: 0.5 },
-    { name: "Redux", color: "#764ABC", position: [-0.5, 0, 0], size: 0.5 },
-    { name: "Webpack", color: "#8DD6F9", position: [0.5, 0, 0], size: 0.5 },
-    { name: "Sass", color: "#CC6699", position: [1.5, 0, 0], size: 0.5 },
-  ];
-  
-  const backendSkills = [
-    { name: "Node.js", color: "#339933", position: [-1.5, -1, 0], size: 0.5 },
-    { name: "Express", color: "#000000", position: [-0.5, -1, 0], size: 0.5 },
-    { name: "MySQL", color: "#4479A1", position: [0.5, -1, 0], size: 0.5 },
-    { name: "API REST", color: "#FF6C37", position: [1.5, -1, 0], size: 0.5 },
-  ];
-  
-  return (
-    <>
-      {frontendSkills.map((skill, index) => (
-        <SkillCube
-          key={`frontend-${index}`}
-          position={skill.position}
-          size={skill.size}
-          color={skill.color}
-          text={skill.name}
-        />
-      ))}
-      
-      {backendSkills.map((skill, index) => (
-        <SkillCube
-          key={`backend-${index}`}
-          position={skill.position}
-          size={skill.size}
-          color={skill.color}
-          text={skill.name}
-        />
-      ))}
-    </>
-  );
-}
-
+// Composant Skills
 function Skills() {
   const frontendSkills = [
     { name: "React.js", level: 90 },
@@ -125,7 +67,20 @@ function Skills() {
                   autoRotate
                   autoRotateSpeed={0.5}
                 />
-                <SkillsGrid />
+                
+                {/* Cubes de compétences */}
+                <SkillCube position={[-1.5, 1, 0]} color="#6c63ff" text="React" />
+                <SkillCube position={[-0.5, 1, 0]} color="#f7d765" text="JavaScript" />
+                <SkillCube position={[0.5, 1, 0]} color="#e34c26" text="HTML5" />
+                <SkillCube position={[1.5, 1, 0]} color="#1572b6" text="CSS3" />
+                <SkillCube position={[-1.5, 0, 0]} color="#000000" text="Three.js" />
+                <SkillCube position={[-0.5, 0, 0]} color="#764abc" text="Redux" />
+                <SkillCube position={[0.5, 0, 0]} color="#8ed6fb" text="Webpack" />
+                <SkillCube position={[1.5, 0, 0]} color="#cc6699" text="Sass" />
+                <SkillCube position={[-1.5, -1, 0]} color="#339933" text="Node.js" />
+                <SkillCube position={[-0.5, -1, 0]} color="#000000" text="Express" />
+                <SkillCube position={[0.5, -1, 0]} color="#4479a1" text="MySQL" />
+                <SkillCube position={[1.5, -1, 0]} color="#ff6c37" text="API REST" />
               </Canvas>
             </div>
           </div>

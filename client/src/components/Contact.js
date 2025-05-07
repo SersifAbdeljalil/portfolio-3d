@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
-import api from '../../api';
-import './Contact.css';
 
 // Composant 3D pour la section Contact
 function ContactSphere() {
@@ -74,11 +72,7 @@ function Contact() {
     setIsSubmitting(true);
     
     try {
-      // Utiliser l'API pour envoyer le message
-      // Pour le développement, utilisez une fonction simulée
-      // const response = await api.contact.sendMessage(formData);
-      
-      // Simulation d'une requête API réussie
+      // Simuler une requête API réussie
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       setSubmitResult({

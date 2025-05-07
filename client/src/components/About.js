@@ -1,23 +1,6 @@
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Float } from '@react-three/drei';
-import './About.css';
-
-// Composant 3D pour la section À propos
-function AboutModel() {
-  return (
-    <Float
-      speed={2}
-      rotationIntensity={0.2}
-      floatIntensity={0.5}
-    >
-      <mesh>
-        <torusKnotGeometry args={[1, 0.3, 128, 32]} />
-        <meshStandardMaterial color="#6c63ff" metalness={0.5} roughness={0.2} />
-      </mesh>
-    </Float>
-  );
-}
+import { OrbitControls, Float, TorusKnot } from '@react-three/drei';
 
 function About() {
   return (
@@ -28,11 +11,16 @@ function About() {
         <div className="about-content">
           <div className="about-text">
             <p>
-              Bonjour ! Je suis un développeur Full Stack passionné par la création d'expériences web interactives et immersives. Avec une expertise en React.js, Three.js et Node.js, je construis des applications web modernes qui combinent fonctionnalité et design attrayant.
+              Bonjour ! Je suis un développeur Full Stack passionné par la création d'expériences 
+              web interactives et immersives. Avec une expertise en React.js, Three.js et Node.js, 
+              je construis des applications web modernes qui combinent fonctionnalité et design attrayant.
             </p>
             
             <p>
-              Mon parcours dans le développement web a commencé il y a plusieurs années, et depuis, j'ai travaillé sur divers projets allant des sites vitrines aux applications complexes. Ma passion pour la 3D et les interfaces utilisateur interactives m'a amené à approfondir mes connaissances en Three.js et WebGL.
+              Mon parcours dans le développement web a commencé il y a plusieurs années, et depuis, 
+              j'ai travaillé sur divers projets allant des sites vitrines aux applications complexes. 
+              Ma passion pour la 3D et les interfaces utilisateur interactives m'a amené à approfondir 
+              mes connaissances en Three.js et WebGL.
             </p>
             
             <div className="about-details">
@@ -61,7 +49,11 @@ function About() {
                 <ambientLight intensity={0.6} />
                 <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
                 <OrbitControls enableZoom={false} enablePan={false} />
-                <AboutModel />
+                <Float speed={2} rotationIntensity={1} floatIntensity={1}>
+                  <TorusKnot args={[1, 0.3, 128, 32]}>
+                    <meshStandardMaterial color="#6c63ff" metalness={0.5} roughness={0.2} />
+                  </TorusKnot>
+                </Float>
               </Canvas>
             </div>
           </div>

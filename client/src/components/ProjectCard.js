@@ -1,25 +1,29 @@
 import React, { useState } from 'react';
-import './Projects.css';
 
 function ProjectCard({ project }) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   
-  const handleCardFlip = () => {
-    setIsFlipped(!isFlipped);
+  // Prévenir la propagation du clic pour les liens
+  const handleLinkClick = (e) => {
+    e.stopPropagation();
   };
   
   return (
     <div 
-      className={`project-card ${isFlipped ? 'flipped' : ''} ${project.featured ? 'featured' : ''}`}
-      onClick={handleCardFlip}
+      className={`project-card ${project.featured ? 'featured' : ''}`}
+      onClick={() => setIsFlipped(!isFlipped)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="project-card-inner">
-        {/* Front du carte */}
+      <div className={`project-card-inner ${isFlipped ? 'flipped' : ''}`}>
+        {/* Face avant de la carte */}
         <div className="project-card-front">
           <div className="project-image">
             <img 
               src={project.imageUrl || '/assets/images/project-placeholder.jpg'} 
               alt={project.title} 
+              loading="lazy"
             />
             {project.featured && <span className="featured-badge">Mis en avant</span>}
           </div>
@@ -29,9 +33,12 @@ function ProjectCard({ project }) {
             <p className="project-description">{project.description}</p>
             
             <div className="project-tech">
-              {project.technologies && project.technologies.map((tech, index) => (
+              {project.technologies && project.technologies.slice(0, 4).map((tech, index) => (
                 <span key={index} className="tech-tag">{tech}</span>
               ))}
+              {project.technologies && project.technologies.length > 4 && (
+                <span className="tech-tag">+{project.technologies.length - 4}</span>
+              )}
             </div>
           </div>
           
@@ -40,12 +47,12 @@ function ProjectCard({ project }) {
           </div>
         </div>
         
-        {/* Arrière de la carte */}
+        {/* Face arrière de la carte */}
         <div className="project-card-back">
           <h3 className="project-title">{project.title}</h3>
           
           <div className="project-details">
-            <h4>Description détaillée</h4>
+            <h4>Description</h4>
             <p>{project.description}</p>
             
             <h4>Technologies utilisées</h4>
@@ -62,9 +69,10 @@ function ProjectCard({ project }) {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="btn btn-primary btn-sm"
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={handleLinkClick}
                 >
-                  Voir le projet
+                  <span>Voir le projet</span>
+                  <i className="fas fa-external-link-alt"></i>
                 </a>
               )}
               
@@ -74,9 +82,10 @@ function ProjectCard({ project }) {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="btn btn-secondary btn-sm"
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={handleLinkClick}
                 >
-                  Voir le code
+                  <span>Code source</span>
+                  <i className="fab fa-github"></i>
                 </a>
               )}
             </div>

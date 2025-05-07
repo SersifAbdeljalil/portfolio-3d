@@ -1,0 +1,222 @@
+/* Styles spécifiques pour le mode sombre */
+[data-theme="dark"] .with-3d-background {
+    background-color: #050816;
+  }
+  
+  [data-theme="dark"] .home-text .title,
+  [data-theme="dark"] .home-text .description,
+  [data-theme="dark"] .about-text p,
+  [data-theme="dark"] .project-title,
+  [data-theme="dark"] .project-description,
+  [data-theme="dark"] .skill-name,
+  [data-theme="dark"] .info-details h3,
+  [data-theme="dark"] .info-details p,
+  [data-theme="dark"] .info-details a,
+  [data-theme="dark"] .form-group label {
+    color: var(--text-color);
+  }
+  
+  [data-theme="dark"] .highlight-card,
+  [data-theme="dark"] .skills-category,
+  [data-theme="dark"] .project-card,
+  [data-theme="dark"] .info-container,
+  [data-theme="dark"] .contact-form-container {
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  [data-theme="dark"] .tech-tag {
+    background-color: rgba(108, 99, 255, 0.2);
+  }
+  
+  [data-theme="dark"] .card-flip-info {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  [data-theme="dark"] .loading-screen {
+    background-color: #050816;
+  }
+  
+  [data-theme="dark"] .nav-mobile {
+    background-color: rgba(5, 8, 22, 0.95);
+  }
+  
+  /* Background Scene en mode sombre */
+  [data-theme="dark"] .background-scene::after {
+    background: radial-gradient(
+      circle at center,
+      rgba(5, 8, 22, 0.1) 0%,
+      rgba(5, 8, 22, 0.6) 100%
+    );
+  }
+  
+  /* Background Scene en mode clair */
+  :root:not([data-theme="dark"]) .background-scene::after {
+    background: radial-gradient(
+      circle at center,
+      rgba(248, 248, 248, 0.1) 0%,
+      rgba(248, 248, 248, 0.6) 100%
+    );
+  }
+  
+  /* Adaptations spécifiques pour les formulaires en mode sombre */
+  [data-theme="dark"] .form-group input, 
+  [data-theme="dark"] .form-group textarea {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+  }
+  
+  [data-theme="dark"] .search-input {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+  }
+  
+  /* Adaptations pour les boutons de filtre en mode sombre */
+  [data-theme="dark"] .filter-btn {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+  }
+  
+  /* Adaptation pour les icônes en mode sombre (meilleure visibilité) */
+  [data-theme="dark"] .card-icon,
+  [data-theme="dark"] .info-icon {
+    background: var(--gradient-primary);
+    box-shadow: 0 0 15px rgba(139, 132, 255, 0.3);
+  }
+  
+  /* Effets de survol adaptés pour le mode sombre */
+  [data-theme="dark"] .highlight-card:hover,
+  [data-theme="dark"] .skills-category:hover,
+  [data-theme="dark"] .project-card:hover {
+    box-shadow: 0 5px 15px rgba(139, 132, 255, 0.2);
+    border: 1px solid rgba(139, 132, 255, 0.3);
+  }
+  
+  /* Animation spécifique pour le mode sombre */
+  @keyframes glowPulse {
+    0%, 100% {
+      box-shadow: 0 0 5px rgba(139, 132, 255, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(139, 132, 255, 0.5);
+    }
+  }
+  
+  [data-theme="dark"] .theme-toggle {
+    animation: glowPulse 3s infinite;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  /* Style de la barre de navigation en mode sombre */
+  [data-theme="dark"] .navigation {
+    background-color: rgba(5, 8, 22, 0.8);
+    backdrop-filter: blur(10px);
+  }
+  
+  [data-theme="dark"] .navigation.scrolled {
+    background-color: rgba(5, 8, 22, 0.95);
+  }
+  
+  /* Adaptations pour les éléments du portfolio */
+[data-theme="dark"] .section-title {
+    color: var(--text-color);
+  }
+  
+  [data-theme="dark"] .section-title::after {
+    background: var(--gradient-primary);
+  }
+  
+  /* Adaptation pour les éléments de texte */
+  [data-theme="dark"] p {
+    color: var(--text-secondary);
+  }
+  
+  /* Adaptation pour la section des compétences */
+  [data-theme="dark"] .skill-percentage {
+    color: var(--primary-color);
+  }
+  
+  /* Adaptation pour le bouton de retour en haut */
+  [data-theme="dark"] .scroll-to-top {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--primary-color);
+  }
+  
+  [data-theme="dark"] .scroll-to-top:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+  }
+  
+  /* Adaptation pour le scroll indicator */
+  [data-theme="dark"] .scroll-indicator .mouse {
+    border-color: var(--primary-color);
+  }
+  
+  [data-theme="dark"] .scroll-indicator .wheel {
+    background-color: var(--primary-color);
+  }
+  
+  /* Adaptation des inputs de formulaire avec focus */
+  [data-theme="dark"] .form-group input:focus, 
+  [data-theme="dark"] .form-group textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(139, 132, 255, 0.3);
+  }
+  
+  /* Adaptation pour l'écran de chargement */
+  [data-theme="dark"] .progress-bar {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  [data-theme="dark"] .progress-text {
+    color: var(--white);
+  }
+  
+  [data-theme="dark"] .loading-message {
+    color: var(--text-secondary);
+  }
+  
+  /* Adaptation pour les liens sociaux */
+  [data-theme="dark"] .social-links a {
+    background-color: rgba(139, 132, 255, 0.2);
+    color: var(--primary-color);
+  }
+  
+  [data-theme="dark"] .social-links a:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+  }
+  
+  /* Adaptation pour les cartes flippantes des projets */
+  [data-theme="dark"] .project-card-back {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  [data-theme="dark"] .project-features li {
+    color: var(--text-secondary);
+  }
+  
+  /* Adaptation des médias queries pour le mode sombre */
+  @media (max-width: 768px) {
+    [data-theme="dark"] .background-scene::after {
+      background: radial-gradient(
+        circle at center,
+        rgba(5, 8, 22, 0.3) 0%,
+        rgba(5, 8, 22, 0.8) 100%
+      );
+    }
+  }
+  
+  @media (max-width: 480px) {
+    [data-theme="dark"] .background-scene::after {
+      background: radial-gradient(
+        circle at center,
+        rgba(5, 8, 22, 0.5) 0%,
+        rgba(5, 8, 22, 0.9) 100%
+      );
+    }
+  }
