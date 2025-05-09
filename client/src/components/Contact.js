@@ -78,7 +78,7 @@ function Contact() {
     
     try {
       // Envoyer les données au backend
-      const response = await fetch('https://portfolio-3d-production.up.railway.app/api/contact', {
+      const response = await fetch('https://portfolio-server-cyan-omega.vercel.app/api/contact', {
 
         method: 'POST',
         headers: {
