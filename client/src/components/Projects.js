@@ -2,15 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Float, MeshDistortMaterial, Sphere } from '@react-three/drei';
-import { Eye, Github, ExternalLink, Code, Database, Server, Layout, Globe, PieChart } from 'lucide-react';
-import roomBookingImage from './assets/images/room-booking.png';
-import can from './assets/images/Can.png';
-import chu from './assets/images/CHU.png';
-import emploi from './assets/images/emplois.png';
-import prof from './assets/images/prof.png';
-import smartMetre from './assets/images/Smart-Metre.png';
-import TTS from './assets/images/TTS.png';
-import './Projects.css'; // Import the CSS file
+import { Eye, Github, ExternalLink, Code, Brain, PenTool } from 'lucide-react';
+import ngiImage from './assets/images/ngi-system.png'; 
+import intrusionImage from './assets/images/intrusion-detection.png';
+import emotionImage from './assets/images/emotion-recognition.png'; 
+import './Projects.css';
 
 function ProjectsVisual() {
   return (
@@ -53,14 +49,24 @@ function ProjectCard({ project }) {
 
   const getProjectIcon = () => {
     switch(project.category) {
-      case 'web': return <Globe size={24} />;
-      case 'mobile': return <Layout size={24} />;
-      case 'database': return <Database size={24} />;
-      case 'backend': return <Server size={24} />;
-      case 'frontend': return <Code size={24} />;
-      case 'fullstack': return <PieChart size={24} />;
+      case 'ai': return <Brain size={24} />;
+      case 'freelance': return <PenTool size={24} />;
+      case 'research': return <Code size={24} />;
       default: return <Code size={24} />;
     }
+  };
+
+  // Fonction pour obtenir l'image appropriée selon le titre du projet
+  const getProjectImage = () => {
+    const title = project.title.toLowerCase();
+    if (title.includes('ngi') || title.includes('generation')) {
+      return ngiImage;
+    } else if (title.includes('intrusion') || title.includes('detection')) {
+      return intrusionImage;
+    } else if (title.includes('emotion') || title.includes('reconnaissance')) {
+      return emotionImage;
+    }
+    return project.imageUrl || '/assets/images/project-placeholder.jpg';
   };
 
   return (
@@ -68,7 +74,7 @@ function ProjectCard({ project }) {
       <div className={`project-card-inner ${isFlipped ? 'flipped' : ''}`} onClick={() => setIsFlipped(!isFlipped)}>
         <div className="project-card-front">
           <div className="project-image">
-            <img src={project.imageUrl || '/assets/images/project-placeholder.jpg'} alt={project.title} loading="lazy" />
+            <img src={getProjectImage()} alt={project.title} loading="lazy" />
             {project.featured && <span className="featured-badge">{t('projects.featured')}</span>}
           </div>
           <div className="project-content">
@@ -163,134 +169,8 @@ export default function Projects() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProjects, setFilteredProjects] = useState([]);
   
-  // Données des projets
-  const projectsData = [
-    {
-      id: 1,
-      title: "Application de Revente de Tickets CAN2025",
-      description: "Application permettant la gestion et la revente de tickets pour la Coupe d'Afrique des Nations 2025. Le projet est divisé en deux parties principales: frontend et backend.",
-      imageUrl: can,
-      category: "fullstack",
-      featured: true,
-      technologies: ["React.js", "CSS", "MySQL", "JWT", "Node.js", "Express"],
-      features: [
-        "Système d'authentification sécurisé",
-        "Gestion des utilisateurs et leurs profils",
-        "Système de mise en vente de tickets",
-        "Interface de recherche et filtrage des tickets",
-        "Gestion des transactions et paiements"
-      ],
-      githubUrl: "https://github.com/SersifAbdeljalil/revevdre_ticket",
-      demoUrl: null
-    },
-    {
-      id: 2,
-      title: "Gestion de Professeurs",
-      description: "Projet académique permettant aux professeurs de consulter leur profil et télécharger leur carte professionnelle avec un QR code. L'administrateur peut ajouter des professeurs via un fichier Excel ou manuellement.",
-      imageUrl: prof,
-      category: "web",
-      featured: false,
-      technologies: ["React.js", "Express.js", "MySQL"],
-      features: [
-        "Interface administrateur pour la gestion des professeurs",
-        "Importation de données via Excel",
-        "Génération de cartes professionnelles avec QR code",
-        "Système de profil utilisateur"
-      ],
-      githubUrl: "https://github.com/SersifAbdeljalil/gestion_professeurs",
-      demoUrl: null
-    },
-    {
-      id: 3,
-      title: "Réservation de Salles & Emplois du Temps",
-      description: "Système de gestion d'emplois du temps et de réservation de salles avec différents rôles utilisateurs (admin, professeur, étudiant).",
-      imageUrl: emploi,
-      category: "fullstack",
-      featured: true,
-      technologies: ["React.js", "JWT", "Express.js"],
-      features: [
-        "Génération d'emplois du temps par filière et semestre",
-        "Visualisation de statistiques de la plateforme",
-        "Gestion des étudiants, professeurs, salles et départements",
-        "Système de notification pour les changements d'horaires",
-        "Réservation de salles et consultation d'emplois du temps"
-      ],
-      githubUrl: "https://github.com/enimsay21/site_web_resevation_salle_emplois_de-_temps",
-      demoUrl: null
-    },
-    {
-      id: 4,
-      title: "Application Web CHU",
-      description: "Système de gestion pour un Centre Hospitalier Universitaire (CHU) utilisant des design patterns en Java. Le projet modélise efficacement le CHU El Jadida, avec ses bâtiments, personnel, services, patients et sections.",
-      imageUrl: chu,
-      category: "backend",
-      featured: false,
-      technologies: ["Java EE", "JDBC", "Base de données relationnelle"],
-      features: [
-        "Modélisation complète d'un CHU",
-        "Gestion des bâtiments et services",
-        "Gestion du personnel médical",
-        "Suivi des patients",
-        "Application des design patterns Java"
-      ],
-      githubUrl: "https://github.com/SersifAbdeljalil/University-Hospital-Center-app-with-JEE",
-      demoUrl: null
-    },
-    {
-      id: 5,
-      title: "Application Mobile de Gestion de Bibliothèque",
-      description: "Solution mobile intuitive et efficace pour la gestion des emprunts de livres. Permet aux utilisateurs de consulter le catalogue, faire des demandes d'emprunt, annuler une demande ou modifier leur profil.",
-      imageUrl: roomBookingImage,
-      category: "mobile",
-      featured: false,
-      technologies: ["React Native", "JWT", "Express.js"],
-      features: [
-        "Consultation du catalogue de livres",
-        "Système de demande d'emprunt",
-        "Interface administrateur pour gérer les livres",
-        "Gestion des profils utilisateurs",
-        "Architecture moderne avec interface conviviale"
-      ],
-      githubUrl: "https://github.com/SersifAbdeljalil/RestFull",
-      demoUrl: null
-    },
-    {
-      id: 6,
-      title: "Text to Speech",
-      description: "Application permettant de convertir du texte (PDF ou écrit) en audio, facilitant l'accessibilité et la consommation de contenu textuel.",
-      imageUrl: TTS,
-      category: "web",
-      featured: false,
-      technologies: ["React.js", "Express.js", "Node.js", "Google TTS API"],
-      features: [
-        "Conversion de texte en audio",
-        "Support de fichiers PDF",
-        "Interface utilisateur intuitive",
-        "Options de personnalisation de la voix"
-      ],
-      githubUrl: "https://github.com/SersifAbdeljalil/projet_TTS",
-      demoUrl: null
-    },
-    {
-      id: 7,
-      title: "Smart-Mètre",
-      description: "Partie frontend d'un projet qui permet de détecter et d'envoyer des alertes pour un mètre d'oxygène, contribuant à la surveillance et à la sécurité des installations.",
-      imageUrl: smartMetre,
-      category: "frontend",
-      featured: false,
-      technologies: ["React.js", "JWT", "Express.js"],
-      features: [
-        "Interface de surveillance en temps réel",
-        "Système d'alerte pour les niveaux critiques",
-        "Tableau de bord interactif",
-        "Gestion des notifications"
-      ],
-      githubUrl: "https://github.com/SersifAbdeljalil/smart-metre",
-      demoUrl: null
-    }
-  ];
+  const projectsData = t('projects.projectsList', { returnObjects: true });
   
-  // Filtrer les projets en fonction de la catégorie et de la recherche
   useEffect(() => {
     let filtered = projectsData;
     if (activeFilter !== "all") {
@@ -305,15 +185,13 @@ export default function Projects() {
       );
     }
     setFilteredProjects(filtered);
-  }, [activeFilter, searchQuery]);
+  }, [activeFilter, searchQuery, projectsData]);
 
   const categories = [
     { id: "all", name: t('projects.categories.all') },
-    { id: "fullstack", name: t('projects.categories.fullstack') },
-    { id: "frontend", name: t('projects.categories.frontend') },
-    { id: "backend", name: t('projects.categories.backend') },
-    { id: "mobile", name: t('projects.categories.mobile') },
-    { id: "web", name: t('projects.categories.web') }
+    { id: "ai", name: t('projects.categories.ai') },
+    { id: "freelance", name: t('projects.categories.freelance') },
+    { id: "research", name: t('projects.categories.research') }
   ];
 
   return (
@@ -344,7 +222,7 @@ export default function Projects() {
       <div className="projects-grid">
         {filteredProjects.length > 0 ? (
           filteredProjects.map(project => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard key={project.title} project={project} />
           ))
         ) : (
           <div className="no-projects">
@@ -357,22 +235,19 @@ export default function Projects() {
         <h3 className="projects-3d-title">{t('projects.discover3D')}</h3>
         <div className="featured-3d-project">
           <div className="featured-3d-content">
-            <h4 className="project-title-3d">Portfolio 3D Interactif</h4>
+            <h4 className="project-title-3d">Portfolio AI & Freelance</h4>
             <p className="project-description-3d">
-              Site web portfolio personnel mettant en valeur mes projets et compétences avec des animations 3D immersives
-              et un design moderne. Le site est multilingue et offre une expérience utilisateur fluide et interactive.
+              {t('home.description')}
             </p>
             <div className="project-tech-3d">
               <span className="tech-tag">React.js</span>
               <span className="tech-tag">Three.js</span>
-              <span className="tech-tag">Node.js (Express)</span>
-              <span className="tech-tag">CSS</span>
-              <span className="tech-tag">MySQL</span>
+              <span className="tech-tag">Node.js</span>
               <span className="tech-tag">i18n</span>
             </div>
             <div className="project-links-3d">
               <a 
-                href="https://github.com/SersifAbdeljalil/portfolio-3d" 
+                href="https://github.com/ibtissamejabir/portfolio" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="btn btn-secondary btn-sm btn-icon"

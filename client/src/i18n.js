@@ -6,6 +6,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import translationFR from './locales/fr/translation.json';
 import translationEN from './locales/en/translation.json';
 import translationAR from './locales/ar/translation.json';
+import translationZH from './locales/zh/translation.json';
 
 // Les ressources contenant les traductions
 const resources = {
@@ -17,6 +18,9 @@ const resources = {
   },
   ar: {
     translation: translationAR
+  },
+  zh: {
+    translation: translationZH
   }
 };
 
@@ -36,6 +40,14 @@ i18n
     react: {
       useSuspense: true,
     },
+    detection: {
+      // Options pour le détecteur de langue
+      order: ['querystring', 'cookie', 'localStorage', 'navigator', 'htmlTag'],
+      lookupQuerystring: 'lng',
+      lookupCookie: 'i18next',
+      lookupLocalStorage: 'i18nextLng',
+      caches: ['localStorage', 'cookie'],
+    }
   });
 
 export default i18n;

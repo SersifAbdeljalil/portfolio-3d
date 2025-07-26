@@ -1,10 +1,44 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Download, GraduationCap, Briefcase } from 'lucide-react';
-import profileImg from './assets/images/profile.jpg';
+import { Download, GraduationCap, Briefcase, Languages } from 'lucide-react';
+import profileImg from './assets/images/ibtissame-profile.jpg';
+import cvFile from './assets/Documents/IBTISSAME_JABIR.pdf';
+import { saveAs } from 'file-saver';
 
 function About() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const handleDownloadCV = () => {
+    saveAs(cvFile, 'Ibtissame_Jabir_CV.pdf');
+  };
+
+  // Helper function to render details for education and experience arrays
+  const renderDetails = (key, type, fallback) => {
+    const details = t(key, { returnObjects: true });
+    if (Array.isArray(details)) {
+      if (type === 'education') {
+        return details.map((item, index) => (
+          <p key={index}>
+            {item.degree} - {item.institution} ({item.year})<br />
+            {item.description}
+          </p>
+        ));
+      } else if (type === 'experience') {
+        return details.map((item, index) => (
+          <p key={index}>
+            {item.role} at {item.company} ({item.year})<br />
+            {item.description}
+          </p>
+        ));
+      }
+    }
+    return <p>{t(key, fallback)}</p>;
+  };
+
+  // Debug: Log the current language and translation data
+  console.log('Current language:', i18n.language);
+  console.log('Education items:', t('about.education.items', { returnObjects: true }));
+  console.log('Experience items:', t('about.experience.items', { returnObjects: true }));
 
   return (
     <section className="about section">
@@ -13,13 +47,8 @@ function About() {
 
         <div className="about-content">
           <div className="about-text">
-            <p>
-              {t('about.intro')}
-            </p>
-
-            <p>
-              {t('about.bio')}
-            </p>
+            <p>{t('about.intro')}</p>
+            <p>{t('about.bio')}</p>
 
             <div className="about-details">
               <div className="about-detail">
@@ -27,9 +56,7 @@ function About() {
                   <GraduationCap size={24} className="detail-icon" />
                   {t('about.education.title')}
                 </h3>
-                <p>
-                  {t('about.education.details')}
-                </p>
+                {renderDetails('about.education.items', 'education', 'No education details available')}
               </div>
 
               <div className="about-detail">
@@ -37,33 +64,34 @@ function About() {
                   <Briefcase size={24} className="detail-icon" />
                   {t('about.experience.title')}
                 </h3>
-                <p>
-                  {t('about.experience.details')}
-                </p>
+                {renderDetails('about.experience.items', 'experience', 'No experience details available')}
+              </div>
+
+              <div className="about-detail">
+                <h3>
+                  <Languages size={24} className="detail-icon" />
+                  {t('about.languages.title', 'Languages')}
+                </h3>
+                <p>{t('about.languages.details', 'Arabic, English, French, Chinese')}</p>
               </div>
             </div>
 
             <div className="about-cta">
-              <a href="/assets/documents/CV.pdf" className="btn btn-secondary btn-icon" download>
-                <span>{t('about.downloadCV')}</span>
+              <button onClick={handleDownloadCV} className="btn btn-secondary btn-icon">
+                <span>{t('about.downloadCV', 'Download CV')}</span>
                 <Download size={20} />
-              </a>
+              </button>
             </div>
           </div>
 
           <div className="about-visual">
             <div className="profile-image-container">
-              <img
-                src={profileImg}
-                alt="Sersif Abdeljalil"
-                className="profile-image"
-              />
+              <img src={profileImg} alt="Ibtissame Jabir" className="profile-image" />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Styles CSS pour le composant About */}
       <style jsx>{`
         .about.section {
           padding: 4rem 0;
@@ -109,11 +137,6 @@ function About() {
           font-size: 1rem;
         }
 
-        .about-text strong {
-          color: #c4b5fd;
-          font-weight: 600;
-        }
-
         .about-details {
           margin-top: 2rem;
           display: flex;
@@ -122,7 +145,7 @@ function About() {
         }
 
         .about-detail {
-          background-color: rgba(30, 30, 60, 0.8);
+          background-color: rgba(30, 30, 45, 0.8);
           border-radius: 0.75rem;
           padding: 1.5rem;
           border: 1px solid rgba(139, 92, 246, 0.2);
@@ -171,9 +194,6 @@ function About() {
           cursor: pointer;
           transition: all 0.3s ease;
           font-size: 1rem;
-        }
-
-        .btn-secondary {
           background-color: transparent;
           color: #c4b5fd;
           border: 1px solid #8b5cf6;
@@ -197,7 +217,7 @@ function About() {
           overflow: hidden;
           position: relative;
           border: 3px solid rgba(139, 92, 246, 0.3);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.0.2);
           transform: perspective(800px) rotateY(-15deg);
           transition: all 0.5s ease;
         }
@@ -284,7 +304,6 @@ function About() {
           }
         }
         
-        /* Ajustements pour RTL */
         :global(.rtl) .about-text {
           text-align: right;
         }

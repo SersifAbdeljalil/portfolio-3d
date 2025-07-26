@@ -7,8 +7,6 @@ function LanguageSelector() {
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
-    
-    // Si la langue est arabe, appliquer le style RTL, sinon LTR
     if (lng === 'ar') {
       document.body.setAttribute('dir', 'rtl');
       document.documentElement.classList.add('rtl');
@@ -124,7 +122,6 @@ function LanguageSelector() {
           color: white;
         }
 
-        /* Ajustements pour le support RTL */
         :global(.rtl) .language-options {
           right: auto;
           left: 0;

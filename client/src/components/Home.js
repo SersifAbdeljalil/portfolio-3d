@@ -1,11 +1,10 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Float, MeshDistortMaterial, Sphere } from '@react-three/drei';
-import { ArrowRight, Mail, Code, Server, Boxes } from 'lucide-react';
+import { ArrowRight, Mail, Code, PenTool, Brain } from 'lucide-react';
 
-// Composant 3D pour l'arrière-plan
 function ThreeBackground() {
   return (
     <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
@@ -41,11 +40,8 @@ function ThreeBackground() {
 
 function Home() {
   const { t } = useTranslation();
-  
-  // Obtenir les compétences depuis les traductions
   const skills = t('home.skills', { returnObjects: true });
   
-  // Animation au scroll
   useEffect(() => {
     const handleScroll = () => {
       const highlightCards = document.querySelectorAll('.highlight-card');
@@ -61,7 +57,7 @@ function Home() {
     };
     
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Vérifier au chargement initial
+    handleScroll();
     
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -112,26 +108,26 @@ function Home() {
         <div className="highlight-cards">
           <div className="highlight-card">
             <div className="card-icon">
+              <Brain size={24} />
+            </div>
+            <h3>{t('home.highlights.ai.title')}</h3>
+            <p>{t('home.highlights.ai.description')}</p>
+          </div>
+          
+          <div className="highlight-card">
+            <div className="card-icon">
+              <PenTool size={24} />
+            </div>
+            <h3>{t('home.highlights.freelance.title')}</h3>
+            <p>{t('home.highlights.freelance.description')}</p>
+          </div>
+          
+          <div className="highlight-card">
+            <div className="card-icon">
               <Code size={24} />
             </div>
-            <h3>{t('home.highlights.frontend.title')}</h3>
-            <p>{t('home.highlights.frontend.description')}</p>
-          </div>
-          
-          <div className="highlight-card">
-            <div className="card-icon">
-              <Server size={24} />
-            </div>
-            <h3>{t('home.highlights.backend.title')}</h3>
-            <p>{t('home.highlights.backend.description')}</p>
-          </div>
-          
-          <div className="highlight-card">
-            <div className="card-icon">
-              <Boxes size={24} />
-            </div>
-            <h3>{t('home.highlights.animation.title')}</h3>
-            <p>{t('home.highlights.animation.description')}</p>
+            <h3>{t('home.highlights.communication.title')}</h3>
+            <p>{t('home.highlights.communication.description')}</p>
           </div>
         </div>
       </div>

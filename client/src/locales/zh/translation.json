@@ -1,0 +1,202 @@
+{
+  "nav": {
+    "home": "首页",
+    "about": "关于我",
+    "skills": "技能",
+    "projects": "项目",
+    "contact": "联系我"
+  },
+  "footer": {
+    "description": "人工智能三年级学生，寻求内容写作、虚拟助理、数据录入和转录的自由职业机会。具备人工智能概念、书面沟通和组织技能的坚实基础。",
+    "navigation": "导航",
+    "contact": "联系",
+    "socialNetworks": "社交网络",
+    "allRightsReserved": "版权所有",
+    "resources": "资源",
+    "downloadCV": "下载我的简历",
+    "projects": "项目",
+    "services": "服务",
+    "privacyPolicy": "隐私政策"
+  },
+  "home": {
+    "title": "Ibtissame Jabir - 人工智能学生与自由职业者",
+    "subtitle": "专注于 ",
+    "skills": [
+      "人工智能",
+      "内容写作",
+      "虚拟助理",
+      "数据录入",
+      "转录",
+      "书面沟通",
+      "组织"
+    ],
+    "description": "人工智能三年级学生，充满热情且自我激励。寻求内容写作、虚拟助理、数据录入和转录的自由职业机会。凭借人工智能概念的坚实基础以及沟通和组织技能，我按时交付高质量工作。",
+    "viewProjects": "查看我的项目",
+    "contactMe": "联系我",
+    "highlights": {
+      "ai": {
+        "title": "人工智能",
+        "description": "深入掌握人工智能概念，包括机器学习、自然语言处理和数据分析。"
+      },
+      "freelance": {
+        "title": "自由职业服务",
+        "description": "专业的内容写作、虚拟助理、准确的数据录入和高质量转录。"
+      },
+      "communication": {
+        "title": "沟通与组织",
+        "description": "高级书面沟通技能和高效的项目管理以满足截止日期。"
+      }
+    }
+  },
+  "about": {
+    "title": "关于我",
+    "intro": "你好！我是Ibtissame Jabir，人工智能三年级学生。我寻求内容写作、虚拟助理、数据录入和转录的自由职业机会。凭借对人工智能的热情以及沟通和组织技能，我致力于交付高质量工作。",
+    "bio": "我叫Ibtissame Jabir，是一名对人工智能和自由职业充满热情的学生。我在算法开发、数据分析以及写作和组织专业服务方面有经验。我的目标是将我的技术技能和创造力结合，为项目创造价值。",
+    "education": {
+      "title": "教育",
+      "items": [
+        {
+          "degree": "伊本·哈勒敦高中，数学科学专业",
+          "institution": "伊本·哈勒敦高中",
+          "year": "2017-2020"
+        },
+        {
+          "degree": "人工智能专业",
+          "institution": "上海工程科学大学",
+          "year": "2022-2026"
+        }
+      ]
+    },
+    "experience": {
+      "title": "经验",
+      "items": [
+        {
+          "role": "人工智能驱动的执法研究",
+          "company": "NGI系统",
+          "year": "2025",
+          "description": "关于人工智能和生物识别技术在执法中的作用研究。"
+        },
+        {
+          "role": "基于半监督学习入侵检测研究项目",
+          "company": "上海大学",
+          "year": "2024",
+          "description": "使用半监督学习进行入侵检测的研究项目。"
+        },
+        {
+          "role": "情感识别系统开发",
+          "company": "学术项目",
+          "year": "2023",
+          "description": "使用深度学习开发情感识别系统。"
+        }
+      ]
+    },
+    "languages": {
+      "title": "语言",
+      "details": "阿拉伯语：母语\n英语：流利\n中文：会话\n法语：中级"
+    },
+    "downloadCV": "下载我的简历"
+  },
+  "skills": {
+    "title": "我的技能",
+    "categories": {
+      "ai": "人工智能",
+      "freelance": "自由职业服务",
+      "programming": "编程",
+      "dataScience": "数据科学",
+      "databases": "数据库",
+      "communication": "沟通与组织"
+    },
+    "details": {
+      "ai": ["机器学习", "深度学习", "计算机视觉", "自然语言处理", "强化学习", "OpenCV"],
+      "freelance": ["内容写作", "虚拟助理", "数据录入", "转录"],
+      "programming": ["Python"],
+      "dataScience": ["Pandas", "NumPy", "Matplotlib", "Seaborn"],
+      "databases": ["SQL"],
+      "communication": ["书面沟通", "时间管理", "项目组织"]
+    }
+  },
+  "projects": {
+    "title": "我的项目",
+    "featured": "精选",
+    "discover3D": "发现我的人工智能项目",
+    "sourceCode": "源代码",
+    "categories": {
+      "all": "全部",
+      "ai": "人工智能",
+      "freelance": "自由职业",
+      "research": "研究"
+    },
+    "searchPlaceholder": "搜索项目...",
+    "noProjectsFound": "没有找到匹配的项目。",
+    "viewDetails": "点击查看更多详情",
+    "returnBack": "点击返回",
+    "description": "描述",
+    "technologies": "使用的技术",
+    "features": "功能",
+    "demo": "演示",
+    "noLinkAvailable": "无可用链接",
+    "projectsList": [
+      {
+        "title": "人工智能驱动的执法研究：NGI系统",
+        "description": "一项探索人工智能和生物识别技术在现代执法中的作用的调研，重点关注FBI的下一代身份识别（NGI）系统。提供NGI方法（如指纹、面部、虹膜和纹身识别）的全面概述，由人工智能技术（如机器学习、大数据分析和云计算）增强。",
+        "technologies": ["Python", "机器学习", "大数据分析", "云计算"],
+        "category": "research"
+      },
+      {
+        "title": "基于半监督学习的入侵检测",
+        "description": "一项关于使用半监督学习进行入侵检测的研究项目，在三个基准数据集上进行评估。实现了高准确性，展示了模型在识别安全威胁方面的鲁棒性和有效性。",
+        "technologies": ["Python", "半监督学习", "数据科学"],
+        "category": "ai"
+      },
+      {
+        "title": "情感识别系统",
+        "description": "开发了一个使用深度学习的情感识别系统，这是我在该领域的第一个项目。获得了算法、数据集分析和模型评估的实践经验。",
+        "technologies": ["Python", "深度学习", "计算机视觉", "OpenCV"],
+        "category": "ai"
+      }
+    ]
+  },
+  "contact": {
+    "title": "联系我",
+    "form": {
+      "name": "姓名",
+      "email": "电子邮件",
+      "message": "消息",
+      "send": "发送消息",
+      "sending": "正在发送...",
+      "success": "您的消息已成功发送！我将尽快回复。",
+      "error": "发送消息时发生错误，请稍后再试。",
+      "connectionError": "连接服务器时发生错误，请检查您的网络连接并重试。",
+      "validation": {
+        "nameRequired": "姓名是必填项",
+        "emailRequired": "电子邮件是必填项",
+        "emailInvalid": "电子邮件格式无效",
+        "messageRequired": "消息是必填项",
+        "messageTooShort": "消息必须至少包含10个字符"
+      }
+    },
+    "info": {
+      "email": "ibtissamjabir7@gmail.com",
+      "phone": "+8613052375253",
+      "location": "中国上海"
+    }
+  },
+  "loading": {
+    "title": "欢迎",
+    "messages": [
+      "正在加载3D体验...",
+      "准备3D模型...",
+      "初始化着色器...",
+      "配置材料...",
+      "加载纹理...",
+      "校准灯光...",
+      "几乎准备就绪..."
+    ]
+  },
+  "language": {
+    "select": "选择语言",
+    "fr": "法语",
+    "en": "英语",
+    "ar": "阿拉伯语"
+  }
+}

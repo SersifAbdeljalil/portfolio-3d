@@ -4,26 +4,16 @@ import { Sun, Moon } from 'lucide-react';
 
 function ThemeToggle() {
   const { t } = useTranslation();
-  
-  // État initial basé sur les préférences de l'utilisateur
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    // Vérifier si le thème est déjà enregistré
     const savedTheme = localStorage.getItem('theme');
-   
-    // Vérifier les préférences système
-    const prefersDark = window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches;
-   
-    // Utiliser le thème enregistré ou les préférences système
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     return savedTheme === 'dark' || (!savedTheme && prefersDark);
   });
- 
-  // Fonction pour basculer le thème
+
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
   };
- 
-  // Appliquer le thème à l'ensemble du document
+
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.setAttribute('data-theme', 'dark');
@@ -33,18 +23,41 @@ function ThemeToggle() {
       localStorage.setItem('theme', 'light');
     }
   }, [isDarkMode]);
- 
+
   return (
     <button
       className="theme-toggle"
       onClick={toggleTheme}
       aria-label={isDarkMode ? t('theme.lightMode') : t('theme.darkMode')}
+      title={isDarkMode ? t('theme.lightMode') : t('theme.darkMode')}
     >
       {isDarkMode ? (
-        <Sun size={24} />
+        <Sun size={24} color="#c4b5fd" />
       ) : (
-        <Moon size={24} />
+        <Moon size={24} color="#8b5cf6" />
       )}
+      <style jsx>{`
+        .theme-toggle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: rgba(139, 92, 246, 0.1);
+          border: 1px solid rgba(139, 92, 246, 0.3);
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        .theme-toggle:hover {
+          background-color: rgba(139, 92, 246, 0.2);
+          transform: scale(1.1);
+        }
+        .theme-toggle:focus {
+          outline: 2px solid #c4b5fd;
+          outline-offset: 2px;
+        }
+      `}</style>
     </button>
   );
 }

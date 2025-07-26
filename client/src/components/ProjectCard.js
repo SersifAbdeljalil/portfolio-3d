@@ -1,22 +1,18 @@
 import React from 'react';
-import { Eye, Github, ExternalLink, Globe, Layout, Database, Server, Code, PieChart } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Github, Brain, PenTool, Code } from 'lucide-react';
 
 function ProjectCard({ project }) {
-  // Fonction pour obtenir l'icône du projet
+  const { t } = useTranslation();
+
   const getProjectIcon = () => {
     switch (project.category) {
-      case 'web':
-        return <Globe size={24} />;
-      case 'mobile':
-        return <Layout size={24} />;
-      case 'database':
-        return <Database size={24} />;
-      case 'backend':
-        return <Server size={24} />;
-      case 'frontend':
+      case 'ai':
+        return <Brain size={24} />;
+      case 'freelance':
+        return <PenTool size={24} />;
+      case 'research':
         return <Code size={24} />;
-      case 'fullstack':
-        return <PieChart size={24} />;
       default:
         return <Code size={24} />;
     }
@@ -25,7 +21,6 @@ function ProjectCard({ project }) {
   return (
     <div className={`project-card ${project.featured ? 'featured' : ''}`}>
       <div className="project-card-inner">
-        {/* Face avant uniquement */}
         <div className="project-card-front">
           <div className="project-image">
             <img
@@ -33,7 +28,7 @@ function ProjectCard({ project }) {
               alt={project.title}
               loading="lazy"
             />
-            {project.featured && <span className="featured-badge">Mis en avant</span>}
+            {project.featured && <span className="featured-badge">{t('projects.featured')}</span>}
           </div>
 
           <div className="project-content">
@@ -53,7 +48,6 @@ function ProjectCard({ project }) {
             </div>
           </div>
 
-          {/* ✅ Ce lien remplace le flip */}
           <div className="card-flip-info">
             {project.githubUrl ? (
               <a
@@ -62,11 +56,11 @@ function ProjectCard({ project }) {
                 rel="noopener noreferrer"
                 className="btn btn-secondary btn-sm"
               >
-                <span>Cliquez pour plus </span>
+                <span>{t('projects.viewDetails')}</span>
                 <Github size={16} />
               </a>
             ) : (
-              <span>Aucun lien disponible</span>
+              <span>{t('projects.noLinkAvailable')}</span>
             )}
           </div>
         </div>

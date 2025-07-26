@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
-import { Mail, Phone, MapPin, Github, Linkedin, Facebook, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Send } from 'lucide-react';
 
-// Composant 3D pour la section Contact
 function ContactSphere() {
   return (
     <Sphere args={[1, 100, 200]} scale={1.5}>
@@ -35,14 +34,11 @@ function Contact() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    
-    // Effacer l'erreur lorsque l'utilisateur commence à modifier le champ
     if (formErrors[name]) {
       setFormErrors({ ...formErrors, [name]: '' });
     }
   };
   
-  // Validation côté client
   const validateForm = () => {
     const errors = {};
     
@@ -66,7 +62,6 @@ function Contact() {
     return Object.keys(errors).length === 0;
   };
   
-  // Soumission du formulaire avec envoi à l'API
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -77,9 +72,7 @@ function Contact() {
     setIsSubmitting(true);
     
     try {
-      // Envoyer les données au backend
       const response = await fetch('https://portfolio-server-cyan-omega.vercel.app/api/contact', {
-
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -94,11 +87,8 @@ function Contact() {
           success: true,
           message: t('contact.form.success')
         });
-        
-        // Réinitialiser le formulaire après succès
         setFormData({ name: '', email: '', message: '' });
       } else {
-        // Gérer les erreurs de validation du serveur
         if (data.errors && Array.isArray(data.errors)) {
           const serverErrors = {};
           data.errors.forEach(err => {
@@ -113,16 +103,13 @@ function Contact() {
         });
       }
     } catch (error) {
-      console.error('Erreur lors de l\'envoi du message:', error);
-      
+      console.error('Error sending message:', error);
       setSubmitResult({
         success: false,
         message: t('contact.form.connectionError')
       });
     } finally {
       setIsSubmitting(false);
-      
-      // Effacer le message de résultat après 5 secondes
       setTimeout(() => {
         setSubmitResult({ success: false, message: '' });
       }, 5000);
@@ -143,7 +130,7 @@ function Contact() {
                 </div>
                 <div className="info-details">
                   <h3>{t('contact.info.email')}</h3>
-                  <p><a href="mailto:abdosarsif28@gmail.com">abdosarsif28@gmail.com</a></p>
+                  <p><a href="mailto:ibtissamjabir7@gmail.com">ibtissamjabir7@gmail.com</a></p>
                 </div>
               </div>
               
@@ -153,7 +140,7 @@ function Contact() {
                 </div>
                 <div className="info-details">
                   <h3>{t('contact.info.phone')}</h3>
-                  <p><a href="tel:+212 695489581">+212 695489561</a></p>
+                  <p><a href="tel:+8613052375253">+8613052375253</a></p>
                 </div>
               </div>
               
@@ -163,19 +150,16 @@ function Contact() {
                 </div>
                 <div className="info-details">
                   <h3>{t('contact.info.location')}</h3>
-                  <p>Eljadida, Maroc</p>
+                  <p>{t('contact.info.location')}</p>
                 </div>
               </div>
               
               <div className="social-links">
-                <a href="https://github.com/SersifAbdeljalil" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <a href="https://github.com/ibtissamejabir" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                   <Github size={20} />
                 </a>
-                <a href="https://www.linkedin.com/in/aabdeljalil-sersif-803624339/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/ibtissame-jabir-5486aa336/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                   <Linkedin size={20} />
-                </a>
-                <a href="https://web.facebook.com/profile.php?id=100023069885044&_rdc=1&_rdr" target="_blank" rel="noopener noreferrer" aria-label="facebook">
-                  <Facebook size={20} />
                 </a>
               </div>
             </div>
@@ -250,21 +234,16 @@ function Contact() {
         </div>
       </div>
       
-      {/* Styles pour adaptation RTL */}
       <style jsx>{`
-        /* Styles pour support RTL */
         :global(.rtl) .contact-form {
           text-align: right;
         }
-        
         :global(.rtl) .info-item {
           flex-direction: row-reverse;
         }
-        
         :global(.rtl) .btn-icon {
           flex-direction: row-reverse;
         }
-        
         :global(.rtl) .form-group label {
           text-align: right;
         }

@@ -1,139 +1,205 @@
 {
-    "nav": {
-      "home": "Accueil",
-      "about": "À propos",
-      "skills": "Compétences",
-      "projects": "Projets",
-      "contact": "Contact"
-    },
-    "footer": {
-      "description": "Développeur Full Stack & 3D spécialisé en React.js, Three.js et Node.js. Je crée des expériences web interactives et immersives.",
-      "navigation": "Navigation",
-      "contact": "Contact",
-      "socialNetworks": "Réseaux sociaux",
-      "allRightsReserved": "Tous droits réservés"
-    },
-    "home": {
-      "title": "SERSIF Abdeljalil",
-      "subtitle": "Développeur Full Stack",
-      "skills": [
-        "React.js",
-        "Three.js",
-        "Node.js",
-        "MySQL",
-        "Animation 3D",
-        "WebGL"
-      ],
-      "description": "Bienvenue dans mon univers créatif où je donne vie à vos idées avec des expériences web interactives et immersives. Spécialisé en React, Three.js et Node.js, je crée des applications qui allient design et fonctionnalité.",
-      "viewProjects": "Voir mes projets",
-      "contactMe": "Me contacter",
-      "highlights": {
-        "frontend": {
-          "title": "Front-end",
-          "description": "Création d'interfaces réactives et intuitives avec React et Three.js"
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "footer": {
+    "description": "Étudiante en troisième année en intelligence artificielle, je recherche des opportunités freelance en rédaction de contenu, assistance virtuelle, saisie de données et transcription. Forte base en concepts d'IA, compétences en communication écrite et organisation.",
+    "navigation": "Navigation",
+    "contact": "Contact",
+    "socialNetworks": "Réseaux sociaux",
+    "allRightsReserved": "Tous droits réservés",
+    "resources": "Ressources",
+    "downloadCV": "Télécharger mon CV",
+    "projects": "Projets",
+    "services": "Services",
+    "privacyPolicy": "Politique de confidentialité"
+  },
+  "home": {
+    "title": "Ibtissame Jabir - Étudiante en Intelligence Artificielle & Freelance",
+    "subtitle": "Spécialisée en ",
+    "skills": [
+      "Intelligence Artificielle",
+      "Rédaction de contenu",
+      "Assistance virtuelle",
+      "Saisie de données",
+      "Transcription",
+      "Communication écrite",
+      "Organisation"
+    ],
+    "description": "Étudiante en troisième année en intelligence artificielle, passionnée et motivée. Je recherche des opportunités freelance en rédaction de contenu, assistance virtuelle, saisie de données et transcription. Avec une solide base en IA et des compétences en communication et organisation, je livre un travail de qualité dans les délais.",
+    "viewProjects": "Voir mes projets",
+    "contactMe": "Me contacter",
+    "highlights": {
+      "ai": {
+        "title": "Intelligence Artificielle",
+        "description": "Maîtrise solide des concepts d'IA, y compris l'apprentissage automatique, le traitement du langage naturel et l'analyse de données."
+      },
+      "freelance": {
+        "title": "Services Freelance",
+        "description": "Rédaction de contenu professionnelle, assistance virtuelle, saisie de données précise et transcription de qualité."
+      },
+      "communication": {
+        "title": "Communication & Organisation",
+        "description": "Compétences avancées en communication écrite et gestion efficace des projets pour respecter les délais."
+      }
+    }
+  },
+  "about": {
+    "title": "À Propos de Moi",
+    "intro": "Bonjour ! Je suis Ibtissame Jabir, étudiante en troisième année en intelligence artificielle. Je recherche des opportunités freelance en rédaction de contenu, assistance virtuelle, saisie de données et transcription. Avec ma passion pour l'IA et mes compétences en communication et organisation, je m'engage à fournir un travail de qualité.",
+    "bio": "Je m'appelle Ibtissame Jabir, une étudiante passionnée par l'intelligence artificielle et le travail freelance. J'ai de l'expérience dans le développement d'algorithmes, l'analyse de données et la prestation de services professionnels en rédaction et organisation. Mon objectif est de combiner mes compétences techniques et créatives pour créer de la valeur dans les projets.",
+    "education": {
+      "title": "Éducation",
+      "items": [
+        {
+          "degree": "Lycée Ibn Khaldoun, spécialité sciences mathématiques",
+          "institution": "Lycée Ibn Khaldoun",
+          "year": "2017-2020",
+          "description": "Top 5% de la classe, moyenne 4.0. Cours principaux : mathématiques, physique, sciences."
         },
-        "backend": {
-          "title": "Back-end",
-          "description": "Développement d'APIs robustes avec Node.js, Express et MySQL"
-        },
-        "animation": {
-          "title": "3D & Animation",
-          "description": "Création d'expériences immersives avec Three.js et WebGL"
+        {
+          "degree": "Spécialité Intelligence Artificielle",
+          "institution": "Université de Shanghai pour l'Ingénierie et les Sciences",
+          "year": "2022-2026",
+          "description": "Moyenne 3.6 à ce jour. Cours principaux : apprentissage automatique, apprentissage profond, sciences des données, vision par ordinateur, traitement du langage naturel, programmation."
         }
-      }
-    },
-    "about": {
-      "title": "À Propos de Moi",
-      "intro": "Bonjour ! Je suis un développeur Full Stack passionné par la création d'expériences web interactives et immersives. Avec une expertise en React.js, Three.js et Node.js, je construis des applications web modernes qui combinent fonctionnalité et design attrayant.",
-      "bio": "Je m'appelle Sersif Abdeljalil, un développeur passionné par les technologies web modernes et l'innovation numérique. Je conçois des solutions interactives et dynamiques en combinant mes compétences en React.js, Node.js, et Three.js pour offrir des expériences utilisateur immersives.",
-      "education": {
-        "title": "Éducation",
-        "details": "Licence en informatique et mathématiques appliquées (spécialité développement web et BDD) - Université Chouaïb Doukkali. Master en ingénierie informatique et analyse de données (2IAD) - Université Chouaïb Doukkali."
-      },
-      "experience": {
-        "title": "Expérience",
-        "details": "Développement d'une application mobile de gestion de bibliothèque pour la bibliothèque Ennajah à El Jadida (2024-2025)."
-      },
-      "downloadCV": "Télécharger mon CV"
-    },
-    "skills": {
-      "title": "Mes Compétences",
-      "categories": {
-        "frontend": "Frontend",
-        "backend": "Backend",
-        "3d": "3D & Animation",
-        "iot": "IoT & Embarqué",
-        "database": "Bases de données",
-        "design": "UI/UX Design",
-        "tools": "Outils & DevOps"
-      }
-    },
-    "projects": {
-      "title": "Mes Projets",
-      "featured": "Mis en avant",
-       "discover3D": "Découvrez mes projets en 3D",
-  "sourceCode": "Code source",
-      "categories": {
-        "all": "Tous",
-        "fullstack": "Full Stack",
-        "frontend": "Frontend",
-        "backend": "Backend",
-        "mobile": "Mobile",
-        "web": "Web"
-      },
-      "searchPlaceholder": "Rechercher un projet...",
-      "noProjectsFound": "Aucun projet ne correspond à votre recherche.",
-      "viewDetails": "Cliquez pour plus de détails",
-      "returnBack": "Cliquez pour revenir",
-      "description": "Description",
-      "technologies": "Technologies utilisées",
-      "features": "Fonctionnalités",
-      "demo": "Démo",
-      "sourceCode": "Code source",
-      "discover3D": "Découvrez mes projets en 3D",
-      "noLinkAvailable": "Aucun lien disponible"
-    },
-    "contact": {
-      "title": "Me Contacter",
-      "form": {
-        "name": "Nom",
-        "email": "Email",
-        "message": "Message",
-        "send": "Envoyer le message",
-        "sending": "Envoi en cours...",
-        "success": "Votre message a été envoyé avec succès ! Je vous répondrai dès que possible.",
-        "error": "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer plus tard.",
-        "connectionError": "Une erreur est survenue lors de la connexion au serveur. Veuillez vérifier votre connexion internet et réessayer.",
-        "validation": {
-          "nameRequired": "Le nom est requis",
-          "emailRequired": "L'email est requis",
-          "emailInvalid": "Format d'email invalide",
-          "messageRequired": "Le message est requis",
-          "messageTooShort": "Le message doit contenir au moins 10 caractères"
-        }
-      },
-      "info": {
-        "email": "Email",
-        "phone": "Téléphone",
-        "location": "Localisation"
-      }
-    },
-    "loading": {
-      "title": "BIENVENUE",
-      "messages": [
-        "Chargement de l'expérience 3D...",
-        "Préparation des modèles 3D...",
-        "Initialisation des shaders...",
-        "Configuration des matériaux...",
-        "Chargement des textures...",
-        "Calibration des lumières...",
-        "Presque prêt..."
       ]
     },
-    "language": {
-      "select": "Sélectionner une langue",
-      "fr": "Français",
-      "en": "Anglais",
-      "ar": "Arabe"
+    "experience": {
+      "title": "Expérience",
+      "items": [
+        {
+          "role": "Étude sur l'utilisation de l'IA dans l'application de la loi",
+          "company": "Système NGI",
+          "year": "2025",
+          "description": "Étude explorant le rôle de l'IA et des technologies biométriques dans l'application moderne de la loi."
+        },
+        {
+          "role": "Projet de recherche sur la détection d'intrusion",
+          "company": "Université de Shanghai",
+          "year": "2024",
+          "description": "Recherche sur la détection d'intrusion à l'aide de l'apprentissage semi-supervisé, évalué sur trois ensembles de données de référence."
+        },
+        {
+          "role": "Développement d'un système de reconnaissance des émotions",
+          "company": "Projet académique",
+          "year": "2023",
+          "description": "Développement d'un système de reconnaissance des émotions à l'aide de l'apprentissage profond."
+        }
+      ]
+    },
+    "languages": {
+      "title": "Langues",
+      "details": "Arabe : Langue maternelle\nAnglais : Courant\nChinois : Conversationnel\nFrançais : Intermédiaire"
+    },
+    "downloadCV": "Télécharger mon CV"
+  },
+  "skills": {
+    "title": "Mes Compétences",
+    "categories": {
+      "ai": "Intelligence Artificielle",
+      "freelance": "Services Freelance",
+      "programming": "Programmation",
+      "dataScience": "Sciences des Données",
+      "databases": "Bases de Données",
+      "communication": "Communication & Organisation"
+    },
+    "details": {
+      "ai": ["Apprentissage Automatique", "Apprentissage Profond", "Vision par Ordinateur", "Traitement du Langage Naturel", "Apprentissage par Renforcement", "OpenCV"],
+      "freelance": ["Rédaction de Contenu", "Assistance Virtuelle", "Saisie de Données", "Transcription"],
+      "programming": ["Python"],
+      "dataScience": ["Pandas", "NumPy", "Matplotlib", "Seaborn"],
+      "databases": ["SQL"],
+      "communication": ["Communication Écrite", "Gestion du Temps", "Organisation de Projets"]
     }
+  },
+  "projects": {
+    "title": "Mes Projets",
+    "featured": "Mis en avant",
+    "discover3D": "Découvrez mes projets en IA",
+    "sourceCode": "Code Source",
+    "categories": {
+      "all": "Tous",
+      "ai": "Intelligence Artificielle",
+      "freelance": "Freelance",
+      "research": "Recherche"
+    },
+    "searchPlaceholder": "Rechercher un projet...",
+    "noProjectsFound": "Aucun projet ne correspond à votre recherche.",
+    "viewDetails": "Cliquez pour plus de détails",
+    "returnBack": "Cliquez pour revenir",
+    "description": "Description",
+    "technologies": "Technologies Utilisées",
+    "features": "Fonctionnalités",
+    "demo": "Démo",
+    "noLinkAvailable": "Aucun lien disponible",
+    "projectsList": [
+      {
+        "title": "Étude sur l'IA dans l'Application de la Loi : Système NGI",
+        "description": "Une étude explorant le rôle de l'IA et des technologies biométriques dans l'application moderne de la loi, avec un focus sur le système NGI de la FBI. Fournit un aperçu complet des méthodes NGI telles que la reconnaissance des empreintes, des visages, de l'iris et des tatouages, améliorées par des technologies IA comme l'apprentissage automatique, l'analyse de données volumineuses et l'informatique en nuage.",
+        "technologies": ["Python", "Apprentissage Automatique", "Analyse de Données Volumineuses", "Informatique en Nuage"],
+        "category": "research"
+      },
+      {
+        "title": "Détection d'Intrusion par Apprentissage Semi-Supervisé",
+        "description": "Projet de recherche sur la détection d'intrusion à l'aide de l'apprentissage semi-supervisé, évalué sur trois ensembles de données de référence. Atteint une haute précision, démontrant la robustesse et l'efficacité du modèle dans l'identification des menaces de sécurité.",
+        "technologies": ["Python", "Apprentissage Semi-Supervisé", "Sciences des Données"],
+        "category": "ai"
+      },
+      {
+        "title": "Système de Reconnaissance des Émotions",
+        "description": "Développement d'un système de reconnaissance des émotions à l'aide de l'apprentissage profond, premier projet dans ce domaine. Acquisition d'une expérience pratique en algorithmes, analyse de données et évaluation de modèles.",
+        "technologies": ["Python", "Apprentissage Profond", "Vision par Ordinateur", "OpenCV"],
+        "category": "ai"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Me Contacter",
+    "form": {
+      "name": "Nom",
+      "email": "Email",
+      "message": "Message",
+      "send": "Envoyer le message",
+      "sending": "Envoi en cours...",
+      "success": "Votre message a été envoyé avec succès ! Je vous répondrai dès que possible.",
+      "error": "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer plus tard.",
+      "connectionError": "Une erreur est survenue lors de la connexion au serveur. Veuillez vérifier votre connexion internet et réessayer.",
+      "validation": {
+        "nameRequired": "Le nom est requis",
+        "emailRequired": "L'email est requis",
+        "emailInvalid": "Format d'email invalide",
+        "messageRequired": "Le message est requis",
+        "messageTooShort": "Le message doit contenir au moins 10 caractères"
+      }
+    },
+    "info": {
+      "email": "ibtissamjabir7@gmail.com",
+      "phone": "+8613052375253",
+      "location": "Shanghai, Chine"
+    }
+  },
+  "loading": {
+    "title": "BIENVENUE",
+    "messages": [
+      "Chargement de l'expérience 3D...",
+      "Préparation des modèles 3D...",
+      "Initialisation des shaders...",
+      "Configuration des matériaux...",
+      "Chargement des textures...",
+      "Calibration des lumières...",
+      "Presque prêt..."
+    ]
+  },
+  "language": {
+    "select": "Sélectionner une langue",
+    "fr": "Français",
+    "en": "Anglais",
+    "ar": "Arabe",
+    "zh": "Chinois"
   }
+}

@@ -1,139 +1,205 @@
 {
-    "nav": {
-      "home": "Home",
-      "about": "About",
-      "skills": "Skills",
-      "projects": "Projects",
-      "contact": "Contact"
-    },
-    "footer": {
-      "description": "Full Stack & 3D Developer specializing in React.js, Three.js, and Node.js. I create interactive and immersive web experiences.",
-      "navigation": "Navigation",
-      "contact": "Contact",
-      "socialNetworks": "Social Networks",
-      "allRightsReserved": "All rights reserved"
-    },
-    "home": {
-      "title": "SERSIF Abdeljalil",
-      "subtitle": "Full Stack Developer",
-      "skills": [
-        "React.js",
-        "Three.js",
-        "Node.js",
-        "MySQL",
-        "3D Animation",
-        "WebGL"
-      ],
-      "description": "Welcome to my creative universe where I bring your ideas to life with interactive and immersive web experiences. Specialized in React, Three.js, and Node.js, I create applications that combine design and functionality.",
-      "viewProjects": "View my projects",
-      "contactMe": "Contact me",
-      "highlights": {
-        "frontend": {
-          "title": "Front-end",
-          "description": "Creation of responsive and intuitive interfaces with React and Three.js"
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "footer": {
+    "description": "Third-year AI student seeking freelance opportunities in content writing, virtual assistance, data entry, and transcription. Strong foundation in AI concepts, written communication, and organization skills.",
+    "navigation": "Navigation",
+    "contact": "Contact",
+    "socialNetworks": "Social Networks",
+    "allRightsReserved": "All rights reserved",
+    "resources": "Resources",
+    "downloadCV": "Download my CV",
+    "projects": "Projects",
+    "services": "Services",
+    "privacyPolicy": "Privacy Policy"
+  },
+  "home": {
+    "title": "Ibtissame Jabir - AI Student & Freelancer",
+    "subtitle": "Specialized in ",
+    "skills": [
+      "Artificial Intelligence",
+      "Content Writing",
+      "Virtual Assistance",
+      "Data Entry",
+      "Transcription",
+      "Written Communication",
+      "Organization"
+    ],
+    "description": "A dedicated third-year AI student, passionate and self-motivated. Seeking freelance opportunities in content writing, virtual assistance, data entry, and transcription. With a strong foundation in AI concepts and skills in communication and organization, I deliver high-quality work on time.",
+    "viewProjects": "View My Projects",
+    "contactMe": "Contact Me",
+    "highlights": {
+      "ai": {
+        "title": "Artificial Intelligence",
+        "description": "Strong grasp of AI concepts, including machine learning, natural language processing, and data analysis."
+      },
+      "freelance": {
+        "title": "Freelance Services",
+        "description": "Professional content writing, virtual assistance, accurate data entry, and high-quality transcription."
+      },
+      "communication": {
+        "title": "Communication & Organization",
+        "description": "Advanced written communication skills and efficient project management to meet deadlines."
+      }
+    }
+  },
+  "about": {
+    "title": "About Me",
+    "intro": "Hello! I'm Ibtissame Jabir, a third-year AI student. I seek freelance opportunities in content writing, virtual assistance, data entry, and transcription. With my passion for AI and skills in communication and organization, I aim to deliver high-quality work.",
+    "bio": "My name is Ibtissame Jabir, an enthusiastic AI student and freelancer. I have experience in algorithm development, data analysis, and providing professional services in writing and organization. I aim to combine my technical and creative skills to create value in projects.",
+    "education": {
+      "title": "Education",
+      "items": [
+        {
+          "degree": "Ibn Khaldoun High School, Mathematics Science Major",
+          "institution": "Ibn Khaldoun High School",
+          "year": "2017-2020",
+          "description": "Top 5% of class, GPA 4.0. Main courses: Mathematics, Physics, Science."
         },
-        "backend": {
-          "title": "Back-end",
-          "description": "Development of robust APIs with Node.js, Express, and MySQL"
-        },
-        "animation": {
-          "title": "3D & Animation",
-          "description": "Creation of immersive experiences with Three.js and WebGL"
+        {
+          "degree": "AI Major",
+          "institution": "Shanghai University of Engineering and Science",
+          "year": "2022-2026",
+          "description": "GPA 3.6 so far. Main courses: Machine Learning, Deep Learning, Data Science, Computer Vision, NLP, Programming."
         }
-      }
-    },
-    "about": {
-      "title": "About Me",
-      "intro": "Hello! I am a Full Stack developer passionate about creating interactive and immersive web experiences. With expertise in React.js, Three.js, and Node.js, I build modern web applications that combine functionality and attractive design.",
-      "bio": "My name is Sersif Abdeljalil, a developer passionate about modern web technologies and digital innovation. I design interactive and dynamic solutions by combining my skills in React.js, Node.js, and Three.js to deliver immersive user experiences.",
-      "education": {
-        "title": "Education",
-        "details": "Bachelor's degree in Computer Science and Applied Mathematics (specialized in web development and databases) - Chouaïb Doukkali University. Master's degree in Computer Engineering and Data Analysis (2IAD) - Chouaïb Doukkali University."
-      },
-      "experience": {
-        "title": "Experience",
-        "details": "Development of a mobile library management application for the Ennajah library in El Jadida (2024-2025)."
-      },
-      "downloadCV": "Download my CV"
-    },
-    "skills": {
-      "title": "My Skills",
-      "categories": {
-        "frontend": "Frontend",
-        "backend": "Backend",
-        "3d": "3D & Animation",
-        "iot": "IoT & Embedded",
-        "database": "Databases",
-        "design": "UI/UX Design",
-        "tools": "Tools & DevOps"
-      }
-    },
-    "projects": {
-      "title": "My Projects",
-      "featured": "Featured",
-       "discover3D": "Discover my 3D projects",
-  "sourceCode": "Source code",
-      "categories": {
-        "all": "All",
-        "fullstack": "Full Stack",
-        "frontend": "Frontend",
-        "backend": "Backend",
-        "mobile": "Mobile",
-        "web": "Web"
-      },
-      "searchPlaceholder": "Search for a project...",
-      "noProjectsFound": "No projects match your search.",
-      "viewDetails": "Click for more details",
-      "returnBack": "Click to return",
-      "description": "Description",
-      "technologies": "Technologies used",
-      "features": "Features",
-      "demo": "Demo",
-      "sourceCode": "Source code",
-      "discover3D": "Discover my projects in 3D",
-      "noLinkAvailable": "No link available"
-    },
-    "contact": {
-      "title": "Contact Me",
-      "form": {
-        "name": "Name",
-        "email": "Email",
-        "message": "Message",
-        "send": "Send message",
-        "sending": "Sending...",
-        "success": "Your message has been sent successfully! I will respond as soon as possible.",
-        "error": "An error occurred while sending the message. Please try again later.",
-        "connectionError": "An error occurred while connecting to the server. Please check your internet connection and try again.",
-        "validation": {
-          "nameRequired": "Name is required",
-          "emailRequired": "Email is required",
-          "emailInvalid": "Invalid email format",
-          "messageRequired": "Message is required",
-          "messageTooShort": "Message must contain at least 10 characters"
-        }
-      },
-      "info": {
-        "email": "Email",
-        "phone": "Phone",
-        "location": "Location"
-      }
-    },
-    "loading": {
-      "title": "WELCOME",
-      "messages": [
-        "Loading 3D experience...",
-        "Preparing 3D models...",
-        "Initializing shaders...",
-        "Configuring materials...",
-        "Loading textures...",
-        "Calibrating lights...",
-        "Almost ready..."
       ]
     },
-    "language": {
-      "select": "Select a language",
-      "fr": "French",
-      "en": "English",
-      "ar": "Arabic"
+    "experience": {
+      "title": "Experience",
+      "items": [
+        {
+          "role": "Survey on AI-driven law enforcement",
+          "company": "NGI System",
+          "year": "2025",
+          "description": "Survey exploring the role of AI and biometric technologies in modern law enforcement."
+        },
+        {
+          "role": "Research project on intrusion detection",
+          "company": "Shanghai University",
+          "year": "2024",
+          "description": "Research on intrusion detection using semi-supervised learning, evaluated on three benchmark datasets."
+        },
+        {
+          "role": "Development of an emotion recognition system",
+          "company": "Academic Project",
+          "year": "2023",
+          "description": "Developed an emotion recognition system using deep learning."
+        }
+      ]
+    },
+    "languages": {
+      "title": "Languages",
+      "details": "Arabic: Native\nEnglish: Fluent\nChinese: Conversational\nFrench: Intermediate"
+    },
+    "downloadCV": "Download my CV"
+  },
+  "skills": {
+    "title": "My Skills",
+    "categories": {
+      "ai": "Artificial Intelligence",
+      "freelance": "Freelance Services",
+      "programming": "Programming",
+      "dataScience": "Data Science",
+      "databases": "Databases",
+      "communication": "Communication & Organization"
+    },
+    "details": {
+      "ai": ["Machine Learning", "Deep Learning", "Computer Vision", "Natural Language Processing", "Reinforcement Learning", "OpenCV"],
+      "freelance": ["Content Writing", "Virtual Assistance", "Data Entry", "Transcription"],
+      "programming": ["Python"],
+      "dataScience": ["Pandas", "NumPy", "Matplotlib", "Seaborn"],
+      "databases": ["SQL"],
+      "communication": ["Written Communication", "Time Management", "Project Organization"]
     }
+  },
+  "projects": {
+    "title": "My Projects",
+    "featured": "Featured",
+    "discover3D": "Discover my AI projects",
+    "sourceCode": "Source Code",
+    "categories": {
+      "all": "All",
+      "ai": "Artificial Intelligence",
+      "freelance": "Freelance",
+      "research": "Research"
+    },
+    "searchPlaceholder": "Search for a project...",
+    "noProjectsFound": "No projects match your search.",
+    "viewDetails": "Click for more details",
+    "returnBack": "Click to return",
+    "description": "Description",
+    "technologies": "Technologies Used",
+    "features": "Features",
+    "demo": "Demo",
+    "noLinkAvailable": "No link available",
+    "projectsList": [
+      {
+        "title": "Survey on AI-Driven Law Enforcement: NGI System",
+        "description": "A survey exploring the role of AI and biometric technologies in modern law enforcement, focusing on the FBI's Next Generation Identification (NGI) system. It provides a comprehensive overview of NGI methods like fingerprint, facial, iris, and tattoo recognition, enhanced by AI technologies such as machine learning, big data analytics, and cloud computing.",
+        "technologies": ["Python", "Machine Learning", "Big Data Analytics", "Cloud Computing"],
+        "category": "research"
+      },
+      {
+        "title": "Intrusion Detection Using Semi-Supervised Learning",
+        "description": "A research project on intrusion detection using semi-supervised learning, evaluated on three benchmark datasets. Achieved high accuracy, demonstrating model robustness and effectiveness in identifying security threats.",
+        "technologies": ["Python", "Semi-Supervised Learning", "Data Science"],
+        "category": "ai"
+      },
+      {
+        "title": "Emotion Recognition System",
+        "description": "Developed an emotion recognition system using deep learning as my first project in the field. Gained hands-on experience in algorithms, dataset analysis, and model evaluation.",
+        "technologies": ["Python", "Deep Learning", "Computer Vision", "OpenCV"],
+        "category": "ai"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact Me",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send message",
+      "sending": "Sending...",
+      "success": "Your message has been sent successfully! I will respond as soon as possible.",
+      "error": "An error occurred while sending the message. Please try again later.",
+      "connectionError": "An error occurred while connecting to the server. Please check your internet connection and try again.",
+      "validation": {
+        "nameRequired": "Name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Invalid email format",
+        "messageRequired": "Message is required",
+        "messageTooShort": "Message must contain at least 10 characters"
+      }
+    },
+    "info": {
+      "email": "ibtissamjabir7@gmail.com",
+      "phone": "+8613052375253",
+      "location": "Shanghai, China"
+    }
+  },
+  "loading": {
+    "title": "WELCOME",
+    "messages": [
+      "Loading 3D experience...",
+      "Preparing 3D models...",
+      "Initializing shaders...",
+      "Configuring materials...",
+      "Loading textures...",
+      "Calibrating lights...",
+      "Almost ready..."
+    ]
+  },
+  "language": {
+    "select": "Select a language",
+    "fr": "French",
+    "en": "English",
+    "ar": "Arabic",
+    "zh": "Chinese"
   }
+}
