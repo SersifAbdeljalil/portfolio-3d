@@ -1,10 +1,41 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import ThemeToggle from './ThemeToggle';
 
 function Navigation() {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation(); // ✅ Utilisation du vrai hook de traduction
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    // Function to check theme
+    const checkTheme = () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark' ||
+                     document.documentElement.classList.contains('dark') ||
+                     (!document.documentElement.getAttribute('data-theme') && 
+                      !document.documentElement.classList.contains('light') &&
+                      window.matchMedia('(prefers-color-scheme: dark)').matches);
+      setIsDarkMode(isDark);
+    };
+
+    // Check on load
+    checkTheme();
+
+    // Listen for theme changes
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, { 
+      attributes: true, 
+      attributeFilter: ['data-theme', 'class'] 
+    });
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', checkTheme);
+
+    return () => {
+      observer.disconnect();
+      mediaQuery.removeEventListener('change', checkTheme);
+    };
+  }, []);
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -15,6 +46,35 @@ function Navigation() {
       document.documentElement.setAttribute('dir', 'ltr');
     }
   };
+
+  // Theme-based colors
+  const navBg = isDarkMode 
+    ? 'linear-gradient(135deg, rgba(30, 30, 60, 0.8) 0%, rgba(25, 25, 50, 0.9) 100%)'
+    : 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.95) 100%)';
+  
+  const borderColor = isDarkMode 
+    ? 'rgba(139, 92, 246, 0.15)' 
+    : 'rgba(139, 92, 246, 0.2)';
+  
+  const shadowColor = isDarkMode 
+    ? 'rgba(139, 92, 246, 0.1)' 
+    : 'rgba(139, 92, 246, 0.15)';
+  
+  const textColor = isDarkMode ? '#c4b5fd' : '#6b46c1';
+  const textHoverColor = isDarkMode ? '#9f7aea' : '#8b5cf6';
+  const textActiveColor = isDarkMode ? '#8b5cf6' : '#7c3aed';
+  
+  const linkBgHover = isDarkMode 
+    ? 'rgba(139, 92, 246, 0.08)' 
+    : 'rgba(139, 92, 246, 0.12)';
+  
+  const linkBgActive = isDarkMode 
+    ? 'rgba(139, 92, 246, 0.12)' 
+    : 'rgba(139, 92, 246, 0.18)';
+
+  const langSwitcherBg = isDarkMode 
+    ? 'rgba(139, 92, 246, 0.08)' 
+    : 'rgba(139, 92, 246, 0.06)';
 
   return (
     <nav className="navigation">
@@ -75,15 +135,16 @@ function Navigation() {
       <style jsx>{`
         .navigation {
           position: relative;
-          background: linear-gradient(135deg, rgba(30, 30, 60, 0.8) 0%, rgba(25, 25, 50, 0.9) 100%);
+          background: ${navBg};
           backdrop-filter: blur(20px);
-          border: 1px solid rgba(139, 92, 246, 0.15);
+          border: 1px solid ${borderColor};
           border-radius: 2rem;
           padding: 0.75rem 1.5rem;
           margin: 1rem;
           box-shadow: 
-            0 8px 32px rgba(139, 92, 246, 0.1),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            0 8px 32px ${shadowColor},
+            inset 0 1px 0 ${isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.8)'};
+          transition: all 0.3s ease;
         }
 
         .navigation::before {
@@ -93,7 +154,10 @@ function Navigation() {
           left: 0;
           right: 0;
           bottom: 0;
-          background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+          background: ${isDarkMode 
+            ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, transparent 50%)'
+            : 'linear-gradient(135deg, rgba(139, 92, 246, 0.03) 0%, transparent 50%)'
+          };
           border-radius: inherit;
           pointer-events: none;
         }
@@ -132,7 +196,7 @@ function Navigation() {
         }
 
         .nav-text {
-          color: #c4b5fd;
+          color: ${textColor};
           font-weight: 600;
           font-size: 0.95rem;
           letter-spacing: 0.025em;
@@ -144,14 +208,17 @@ function Navigation() {
         .nav-underline {
           height: 2px;
           width: 0;
-          background: linear-gradient(90deg, #8b5cf6, #9f7aea);
+          background: ${isDarkMode 
+            ? 'linear-gradient(90deg, #8b5cf6, #9f7aea)'
+            : 'linear-gradient(90deg, #7c3aed, #8b5cf6)'
+          };
           border-radius: 1px;
           margin-top: 0.25rem;
           transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-link:hover .nav-text {
-          color: #9f7aea;
+          color: ${textHoverColor};
           transform: translateY(-1px);
         }
 
@@ -160,22 +227,25 @@ function Navigation() {
         }
 
         .nav-link:hover {
-          background: rgba(139, 92, 246, 0.08);
+          background: ${linkBgHover};
         }
 
         .nav-link.active .nav-text {
-          color: #8b5cf6;
-          text-shadow: 0 0 8px rgba(139, 92, 246, 0.4);
+          color: ${textActiveColor};
+          text-shadow: 0 0 8px ${isDarkMode ? 'rgba(139, 92, 246, 0.4)' : 'rgba(124, 58, 237, 0.3)'};
         }
 
         .nav-link.active .nav-underline {
           width: 100%;
-          background: linear-gradient(90deg, #8b5cf6, #a855f7);
-          box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);
+          background: ${isDarkMode 
+            ? 'linear-gradient(90deg, #8b5cf6, #a855f7)'
+            : 'linear-gradient(90deg, #7c3aed, #8b5cf6)'
+          };
+          box-shadow: 0 0 8px ${isDarkMode ? 'rgba(139, 92, 246, 0.4)' : 'rgba(124, 58, 237, 0.3)'};
         }
 
         .nav-link.active {
-          background: rgba(139, 92, 246, 0.12);
+          background: ${linkBgActive};
         }
 
         .nav-controls {
@@ -187,17 +257,17 @@ function Navigation() {
         .language-switcher {
           display: flex;
           gap: 0.25rem;
-          background: rgba(139, 92, 246, 0.08);
+          background: ${langSwitcherBg};
           padding: 0.25rem;
           border-radius: 1rem;
-          border: 1px solid rgba(139, 92, 246, 0.15);
+          border: 1px solid ${borderColor};
         }
 
         .lang-btn {
           position: relative;
           background: transparent;
           border: none;
-          color: #c4b5fd;
+          color: ${textColor};
           padding: 0.5rem 0.75rem;
           border-radius: 0.75rem;
           cursor: pointer;
@@ -221,16 +291,19 @@ function Navigation() {
           left: 50%;
           width: 0;
           height: 0;
-          background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+          background: ${isDarkMode 
+            ? 'radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%)'
+          };
           border-radius: 50%;
           transform: translate(-50%, -50%);
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .lang-btn:hover {
-          background: rgba(139, 92, 246, 0.15);
+          background: ${isDarkMode ? 'rgba(139, 92, 246, 0.15)' : 'rgba(139, 92, 246, 0.12)'};
           transform: translateY(-1px);
-          color: #9f7aea;
+          color: ${textHoverColor};
         }
 
         .lang-btn:hover .lang-ripple {
@@ -244,12 +317,12 @@ function Navigation() {
 
         .lang-btn:focus {
           outline: none;
-          box-shadow: 0 0 0 2px rgba(196, 181, 253, 0.4);
+          box-shadow: 0 0 0 2px ${isDarkMode ? 'rgba(196, 181, 253, 0.4)' : 'rgba(139, 92, 246, 0.4)'};
         }
 
         .theme-wrapper {
           padding-left: 0.5rem;
-          border-left: 1px solid rgba(139, 92, 246, 0.2);
+          border-left: 1px solid ${isDarkMode ? 'rgba(139, 92, 246, 0.2)' : 'rgba(139, 92, 246, 0.3)'};
         }
 
         @media (max-width: 768px) {
@@ -278,7 +351,7 @@ function Navigation() {
             padding-left: 0;
             border-left: none;
             padding-top: 0.5rem;
-            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            border-top: 1px solid ${isDarkMode ? 'rgba(139, 92, 246, 0.2)' : 'rgba(139, 92, 246, 0.3)'};
           }
         }
 

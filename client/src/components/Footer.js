@@ -1,11 +1,74 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
 
 function Footer() {
-  const { t } = useTranslation();
+  const { t } = useTranslation(); // ✅ Utilisation du vrai hook de traduction
   const currentYear = new Date().getFullYear();
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    // Function to check theme
+    const checkTheme = () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark' ||
+                     document.documentElement.classList.contains('dark') ||
+                     (!document.documentElement.getAttribute('data-theme') && 
+                      !document.documentElement.classList.contains('light') &&
+                      window.matchMedia('(prefers-color-scheme: dark)').matches);
+      setIsDarkMode(isDark);
+    };
+
+    // Check on load
+    checkTheme();
+
+    // Listen for theme changes
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, { 
+      attributes: true, 
+      attributeFilter: ['data-theme', 'class'] 
+    });
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', checkTheme);
+
+    return () => {
+      observer.disconnect();
+      mediaQuery.removeEventListener('change', checkTheme);
+    };
+  }, []);
+
+  // Theme-based colors
+  const footerBg = isDarkMode 
+    ? `linear-gradient(135deg, 
+        rgba(30, 30, 60, 0.95) 0%, 
+        rgba(25, 25, 50, 0.98) 50%,
+        rgba(20, 20, 45, 1) 100%)`
+    : `linear-gradient(135deg, 
+        rgba(248, 250, 252, 0.95) 0%, 
+        rgba(241, 245, 249, 0.98) 50%,
+        rgba(226, 232, 240, 1) 100%)`;
+
+  const borderColor = isDarkMode 
+    ? 'rgba(139, 92, 246, 0.2)' 
+    : 'rgba(139, 92, 246, 0.3)';
+
+  const overlayBg = isDarkMode
+    ? `radial-gradient(circle at 30% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+       radial-gradient(circle at 70% 80%, rgba(159, 122, 234, 0.08) 0%, transparent 50%)`
+    : `radial-gradient(circle at 30% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+       radial-gradient(circle at 70% 80%, rgba(159, 122, 234, 0.03) 0%, transparent 50%)`;
+
+  const logoColor = isDarkMode ? '#8b5cf6' : '#7c3aed';
+  const logoHoverColor = isDarkMode ? '#9f7aea' : '#8b5cf6';
+  const textColor = isDarkMode ? '#c4b5fd' : '#64748b';
+  const titleColor = isDarkMode ? '#9f7aea' : '#7c3aed';
+  const linkHoverColor = isDarkMode ? '#9f7aea' : '#8b5cf6';
+  const iconBg = isDarkMode ? 'rgba(139, 92, 246, 0.1)' : 'rgba(139, 92, 246, 0.08)';
+  const iconHoverBg = isDarkMode ? 'rgba(139, 92, 246, 0.2)' : 'rgba(139, 92, 246, 0.15)';
+  const iconColor = isDarkMode ? '#8b5cf6' : '#7c3aed';
+  const socialBorderColor = isDarkMode ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.4)';
+  const socialHoverBorderColor = isDarkMode ? 'rgba(139, 92, 246, 0.5)' : 'rgba(139, 92, 246, 0.6)';
 
   return (
     <footer className="footer" itemScope itemType="https://schema.org/Person">
@@ -183,15 +246,13 @@ function Footer() {
         .footer {
           position: relative;
           margin-top: 4rem;
+          transition: all 0.3s ease;
         }
 
         .footer-background {
-          background: linear-gradient(135deg, 
-            rgba(30, 30, 60, 0.95) 0%, 
-            rgba(25, 25, 50, 0.98) 50%,
-            rgba(20, 20, 45, 1) 100%);
+          background: ${footerBg};
           backdrop-filter: blur(20px);
-          border-top: 1px solid rgba(139, 92, 246, 0.2);
+          border-top: 1px solid ${borderColor};
           position: relative;
           overflow: hidden;
         }
@@ -202,8 +263,7 @@ function Footer() {
           left: 0;
           right: 0;
           bottom: 0;
-          background: radial-gradient(circle at 30% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-                      radial-gradient(circle at 70% 80%, rgba(159, 122, 234, 0.08) 0%, transparent 50%);
+          background: ${overlayBg};
           pointer-events: none;
         }
 
@@ -237,7 +297,7 @@ function Footer() {
         }
 
         .logo-text {
-          color: #8b5cf6;
+          color: ${logoColor};
           font-size: 1.5rem;
           font-weight: 700;
           letter-spacing: -0.025em;
@@ -247,15 +307,18 @@ function Footer() {
         .logo-underline {
           height: 2px;
           width: 0;
-          background: linear-gradient(90deg, #8b5cf6, #9f7aea);
+          background: ${isDarkMode 
+            ? 'linear-gradient(90deg, #8b5cf6, #9f7aea)'
+            : 'linear-gradient(90deg, #7c3aed, #8b5cf6)'
+          };
           margin-top: 0.25rem;
           border-radius: 1px;
           transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .footer-logo:hover .logo-text {
-          color: #9f7aea;
-          text-shadow: 0 0 8px rgba(139, 92, 246, 0.4);
+          color: ${logoHoverColor};
+          text-shadow: 0 0 8px ${isDarkMode ? 'rgba(139, 92, 246, 0.4)' : 'rgba(124, 58, 237, 0.3)'};
         }
 
         .footer-logo:hover .logo-underline {
@@ -263,7 +326,7 @@ function Footer() {
         }
 
         .footer-description {
-          color: #c4b5fd;
+          color: ${textColor};
           line-height: 1.6;
           opacity: 0.9;
           font-size: 0.95rem;
@@ -279,7 +342,7 @@ function Footer() {
         }
 
         .title-text {
-          color: #9f7aea;
+          color: ${titleColor};
           font-size: 1.1rem;
           font-weight: 600;
           letter-spacing: 0.025em;
@@ -288,7 +351,10 @@ function Footer() {
         .title-accent {
           height: 2px;
           width: 30px;
-          background: linear-gradient(90deg, #8b5cf6, transparent);
+          background: ${isDarkMode 
+            ? 'linear-gradient(90deg, #8b5cf6, transparent)'
+            : 'linear-gradient(90deg, #7c3aed, transparent)'
+          };
           margin-top: 0.5rem;
           border-radius: 1px;
         }
@@ -310,7 +376,7 @@ function Footer() {
           position: relative;
           display: flex;
           align-items: center;
-          color: #c4b5fd;
+          color: ${textColor};
           text-decoration: none;
           padding: 0.5rem 0;
           border-radius: 0.5rem;
@@ -331,12 +397,15 @@ function Footer() {
           left: -100%;
           width: 100%;
           height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+          background: ${isDarkMode 
+            ? 'linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent)'
+            : 'linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.08), transparent)'
+          };
           transition: left 0.5s ease;
         }
 
         .footer-link:hover, .contact-link:hover {
-          color: #9f7aea;
+          color: ${linkHoverColor};
           transform: translateX(0.25rem);
         }
 
@@ -351,24 +420,24 @@ function Footer() {
           justify-content: center;
           width: 2rem;
           height: 2rem;
-          background: rgba(139, 92, 246, 0.1);
+          background: ${iconBg};
           border-radius: 0.5rem;
           margin-right: 0.75rem;
           transition: all 0.3s ease;
         }
 
         .contact-icon {
-          color: #8b5cf6;
+          color: ${iconColor};
           transition: all 0.3s ease;
         }
 
         .contact-link:hover .contact-icon-wrapper {
-          background: rgba(139, 92, 246, 0.2);
+          background: ${iconHoverBg};
           transform: scale(1.05);
         }
 
         .contact-link:hover .contact-icon {
-          color: #9f7aea;
+          color: ${linkHoverColor};
         }
 
         .social-links {
@@ -383,8 +452,8 @@ function Footer() {
           justify-content: center;
           width: 3rem;
           height: 3rem;
-          color: #c4b5fd;
-          border: 1px solid rgba(139, 92, 246, 0.3);
+          color: ${textColor};
+          border: 1px solid ${socialBorderColor};
           border-radius: 1rem;
           text-decoration: none;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -403,17 +472,20 @@ function Footer() {
           left: 50%;
           width: 0;
           height: 0;
-          background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+          background: ${isDarkMode 
+            ? 'radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%)'
+          };
           border-radius: 50%;
           transform: translate(-50%, -50%);
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .social-link:hover {
-          color: #8b5cf6;
-          border-color: rgba(139, 92, 246, 0.5);
+          color: ${iconColor};
+          border-color: ${socialHoverBorderColor};
           transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
+          box-shadow: 0 8px 25px ${isDarkMode ? 'rgba(139, 92, 246, 0.2)' : 'rgba(139, 92, 246, 0.15)'};
         }
 
         .social-link:hover .social-ripple {
@@ -431,11 +503,18 @@ function Footer() {
 
         .footer-divider {
           height: 1px;
-          background: linear-gradient(90deg, 
-            transparent 0%, 
-            rgba(139, 92, 246, 0.3) 20%, 
-            rgba(139, 92, 246, 0.3) 80%, 
-            transparent 100%);
+          background: ${isDarkMode 
+            ? `linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(139, 92, 246, 0.3) 20%, 
+                rgba(139, 92, 246, 0.3) 80%, 
+                transparent 100%)`
+            : `linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(139, 92, 246, 0.4) 20%, 
+                rgba(139, 92, 246, 0.4) 80%, 
+                transparent 100%)`
+          };
           margin-bottom: 1.5rem;
         }
 
@@ -448,7 +527,7 @@ function Footer() {
         }
 
         .copyright, .privacy {
-          color: #c4b5fd;
+          color: ${textColor};
           font-size: 0.85rem;
           opacity: 0.8;
           margin: 0;
@@ -474,12 +553,12 @@ function Footer() {
           left: 0;
           width: 0;
           height: 1px;
-          background: #8b5cf6;
+          background: ${iconColor};
           transition: width 0.3s ease;
         }
 
         .privacy-link:hover .privacy-text {
-          color: #8b5cf6;
+          color: ${iconColor};
         }
 
         .privacy-link:hover .privacy-hover {
