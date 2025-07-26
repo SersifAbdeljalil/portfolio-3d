@@ -41,282 +41,424 @@ function About() {
   console.log('Experience items:', t('about.experience.items', { returnObjects: true }));
 
   return (
-    <section className="about section">
-      <div className="container">
-        <h2 className="section-title">{t('about.title')}</h2>
-
-        <div className="about-content">
-          <div className="about-text">
-            <p>{t('about.intro')}</p>
-            <p>{t('about.bio')}</p>
-
-            <div className="about-details">
-              <div className="about-detail">
-                <h3>
-                  <GraduationCap size={24} className="detail-icon" />
-                  {t('about.education.title')}
-                </h3>
-                {renderDetails('about.education.items', 'education', 'No education details available')}
-              </div>
-
-              <div className="about-detail">
-                <h3>
-                  <Briefcase size={24} className="detail-icon" />
-                  {t('about.experience.title')}
-                </h3>
-                {renderDetails('about.experience.items', 'experience', 'No experience details available')}
-              </div>
-
-              <div className="about-detail">
-                <h3>
-                  <Languages size={24} className="detail-icon" />
-                  {t('about.languages.title', 'Languages')}
-                </h3>
-                <p>{t('about.languages.details', 'Arabic, English, French, Chinese')}</p>
-              </div>
-            </div>
-
-            <div className="about-cta">
-              <button onClick={handleDownloadCV} className="btn btn-secondary btn-icon">
-                <span>{t('about.downloadCV', 'Download CV')}</span>
-                <Download size={20} />
-              </button>
-            </div>
+    <>
+      {/* Enhanced background with particles */}
+      <div className="enhanced-background">
+        <div className="mouse-follower" style={{left: '50%', top: '50%'}}></div>
+        
+        {/* Central sphere */}
+        <div className="central-sphere">
+          <div className="sphere-inner">
+            <div className="sphere-core"></div>
+            <div className="sphere-ring ring-1"></div>
+            <div className="sphere-ring ring-2"></div>
+            <div className="sphere-ring ring-3"></div>
           </div>
+        </div>
 
-          <div className="about-visual">
-            <div className="profile-image-container">
-              <img src={profileImg} alt="Ibtissame Jabir" className="profile-image" />
-            </div>
-          </div>
+        {/* Floating particles */}
+        <div className="floating-particle" style={{
+          top: '20%', 
+          left: '15%', 
+          width: '8px', 
+          height: '8px',
+          animationDelay: '0s'
+        }}></div>
+        <div className="floating-particle" style={{
+          top: '70%', 
+          right: '20%', 
+          width: '12px', 
+          height: '12px',
+          animationDelay: '2s'
+        }}></div>
+        <div className="floating-particle" style={{
+          top: '40%', 
+          left: '80%', 
+          width: '6px', 
+          height: '6px',
+          animationDelay: '4s'
+        }}></div>
+
+        {/* Geometric shapes */}
+        <div className="geometric-shapes">
+          <div className="shape triangle"></div>
+          <div className="shape hexagon"></div>
+          <div className="shape circle"></div>
         </div>
       </div>
 
-      <style jsx>{`
-        .about.section {
-          padding: 4rem 0;
-          max-width: 1200px;
-          margin: 0 auto;
-        }
+      <section className="about-section">
+        <div className="container">
+          <h2 className="section-title fade-in">{t('about.title')}</h2>
 
-        .container {
-          width: 100%;
-          padding: 0 1.5rem;
-        }
+          <div className="about-content fade-in-up delay-1">
+            <div className="about-text">
+              <p className="intro-text">{t('about.intro')}</p>
+              <p className="bio-text">{t('about.bio')}</p>
 
-        .section-title {
-          font-size: 2rem;
-          font-weight: 700;
-          color: #8b5cf6;
-          margin-bottom: 2.5rem;
-          text-align: center;
-        }
+              <div className="about-details">
+                <div className="skill-card about-detail delay-2">
+                  <div className="card-background"></div>
+                  <div className="card-content">
+                    <div className="card-icon">
+                      <div className="icon-glow"></div>
+                      <GraduationCap size={24} />
+                    </div>
+                    <h3 className="card-title">{t('about.education.title')}</h3>
+                    <div className="card-description">
+                      {renderDetails('about.education.items', 'education', 'No education details available')}
+                    </div>
+                  </div>
+                </div>
 
-        .about-content {
-          display: grid;
-          grid-template-columns: 3fr 2fr;
-          gap: 2.5rem;
-          align-items: center;
-          background-color: rgba(30, 30, 60, 0.6);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(139, 92, 246, 0.2);
-          border-radius: 1rem;
-          overflow: hidden;
-          padding: 2rem;
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-          animation: fadeIn 0.6s ease-out forwards;
-        }
+                <div className="skill-card about-detail delay-3">
+                  <div className="card-background"></div>
+                  <div className="card-content">
+                    <div className="card-icon">
+                      <div className="icon-glow"></div>
+                      <Briefcase size={24} />
+                    </div>
+                    <h3 className="card-title">{t('about.experience.title')}</h3>
+                    <div className="card-description">
+                      {renderDetails('about.experience.items', 'experience', 'No experience details available')}
+                    </div>
+                  </div>
+                </div>
 
-        .about-text {
-          color: #e2e8f0;
-          line-height: 1.6;
-        }
+                <div className="skill-card about-detail delay-4">
+                  <div className="card-background"></div>
+                  <div className="card-content">
+                    <div className="card-icon">
+                      <div className="icon-glow"></div>
+                      <Languages size={24} />
+                    </div>
+                    <h3 className="card-title">{t('about.languages.title', 'Languages')}</h3>
+                    <div className="card-description">
+                      <p>{t('about.languages.details', 'Arabic, English, French, Chinese')}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-        .about-text p {
-          margin-bottom: 1.5rem;
-          font-size: 1rem;
-        }
+              <div className="about-cta fade-in-up delay-5">
+                <button onClick={handleDownloadCV} className="btn btn-primary">
+                  <span>{t('about.downloadCV', 'Download CV')}</span>
+                  <Download size={20} />
+                </button>
+              </div>
+            </div>
 
-        .about-details {
-          margin-top: 2rem;
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
-        }
+            <div className="about-visual fade-in-up delay-2">
+              <div className="profile-image-container">
+                <div className="profile-glow"></div>
+                <div className="profile-border"></div>
+                <img 
+                  src={profileImg} 
+                  alt="Ibtissame Jabir" 
+                  className="profile-image" 
+                />
+                <div className="profile-overlay"></div>
+              </div>
+              <div className="profile-decoration">
+                <div className="deco-circle deco-1"></div>
+                <div className="deco-circle deco-2"></div>
+                <div className="deco-circle deco-3"></div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        .about-detail {
-          background-color: rgba(30, 30, 45, 0.8);
-          border-radius: 0.75rem;
-          padding: 1.5rem;
-          border: 1px solid rgba(139, 92, 246, 0.2);
-          transition: all 0.3s ease;
-        }
-
-        .about-detail:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-          border-color: rgba(139, 92, 246, 0.5);
-        }
-
-        .about-detail h3 {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          font-size: 1.25rem;
-          color: #c4b5fd;
-          margin-bottom: 1rem;
-          font-weight: 600;
-        }
-
-        .detail-icon {
-          color: #8b5cf6;
-          background: rgba(139, 92, 246, 0.2);
-          padding: 0.5rem;
-          border-radius: 50%;
-        }
-
-        .about-detail p {
-          color: #e2e8f0;
-          line-height: 1.6;
-        }
-
-        .about-cta {
-          margin-top: 2rem;
-        }
-
-        .btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.75rem 1.5rem;
-          border-radius: 0.5rem;
-          font-weight: 500;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          font-size: 1rem;
-          background-color: transparent;
-          color: #c4b5fd;
-          border: 1px solid #8b5cf6;
-        }
-
-        .btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(139, 92, 246, 0.5);
-          background-color: rgba(139, 92, 246, 0.1);
-        }
-
-        .about-visual {
-          position: relative;
-        }
-
-        .profile-image-container {
-          width: 100%;
-          height: 0;
-          padding-bottom: 100%;
-          border-radius: 1rem;
-          overflow: hidden;
-          position: relative;
-          border: 3px solid rgba(139, 92, 246, 0.3);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.0.2);
-          transform: perspective(800px) rotateY(-15deg);
-          transition: all 0.5s ease;
-        }
-
-        .profile-image-container:hover {
-          transform: perspective(800px) rotateY(0);
-          border-color: #8b5cf6;
-        }
-
-        .profile-image-container::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), transparent);
-          z-index: 1;
-          pointer-events: none;
-          border-radius: 1rem;
-        }
-
-        .profile-image {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.5s ease;
-        }
-
-        .profile-image-container:hover .profile-image {
-          transform: scale(1.05);
-        }
-
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 1024px) {
-          .about-content {
-            grid-template-columns: 1fr;
-            gap: 2rem;
+        <style jsx>{`
+          /* Import des variables CSS */
+          .about-section {
+            position: relative;
+            padding: 6rem 0;
+            min-height: 100vh;
+            color: var(--text-color);
+            z-index: 10;
           }
-          
-          .profile-image-container {
-            max-width: 400px;
+
+          .container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
           }
-        }
 
-        @media (max-width: 768px) {
           .section-title {
-            font-size: 1.75rem;
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, 
+              var(--primary-light), 
+              var(--secondary-light)
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px hsla(var(--primary-hue), 80%, 65%, calc(var(--glow-intensity) * 2));
           }
-          
+
           .about-content {
-            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: start;
           }
-          
+
+          .about-text {
+            position: relative;
+          }
+
+          .intro-text, .bio-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+            opacity: 0.95;
+          }
+
+          .intro-text {
+            font-weight: 500;
+            color: var(--primary-light);
+            text-shadow: 0 0 10px currentColor;
+          }
+
+          .about-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 3rem 0;
+          }
+
           .about-detail {
-            padding: 1.25rem;
+            animation-fill-mode: both;
           }
-        }
 
-        @media (max-width: 480px) {
-          .section-title {
-            font-size: 1.5rem;
+          .detail-item {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+          }
+
+          .detail-item:last-child {
+            margin-bottom: 0;
+          }
+
+          .detail-item strong {
+            color: var(--primary-light);
+            font-weight: 600;
+          }
+
+          .detail-desc {
+            color: var(--text-secondary);
+            font-style: italic;
+            opacity: 0.9;
+          }
+
+          .about-cta {
+            margin-top: 3rem;
+            animation-fill-mode: both;
+          }
+
+          .about-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation-fill-mode: both;
+          }
+
+          .profile-image-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid var(--border-color);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+
+          .profile-image-container:hover {
+            transform: scale(1.05) rotate(5deg);
+            border-color: var(--primary-light);
+            box-shadow: 
+              0 20px 40px hsla(var(--primary-hue), 80%, 65%, calc(var(--glow-intensity) * 2)),
+              0 0 0 4px hsla(var(--primary-hue), 80%, 65%, calc(var(--glow-intensity) * 1.5));
+          }
+
+          .profile-glow {
+            position: absolute;
+            inset: -20px;
+            background: radial-gradient(circle, 
+              hsla(var(--primary-hue), 80%, 65%, calc(var(--glow-intensity) * 2)), 
+              transparent 70%
+            );
+            border-radius: 50%;
+            animation: glow-pulse 2s ease-in-out infinite;
+            z-index: -1;
+          }
+
+          .profile-border {
+            position: absolute;
+            inset: -4px;
+            background: linear-gradient(45deg, 
+              var(--primary-light), 
+              var(--secondary-light), 
+              var(--accent-color)
+            );
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotate 10s linear infinite;
+          }
+
+          .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 2;
+          }
+
+          .profile-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+              hsla(var(--primary-hue), 80%, 65%, 0.1), 
+              hsla(280, 70%, 60%, 0.1)
+            );
+            border-radius: 50%;
+            transition: opacity 0.3s ease;
+            z-index: 3;
+          }
+
+          .profile-image-container:hover .profile-overlay {
+            opacity: 0.7;
+          }
+
+          .profile-decoration {
+            position: absolute;
+            inset: -60px;
+            pointer-events: none;
+          }
+
+          .deco-circle {
+            position: absolute;
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            opacity: calc(var(--particle-opacity) * 0.8);
+          }
+
+          .deco-1 {
+            width: 100px;
+            height: 100px;
+            top: -20px;
+            right: -20px;
+            animation: ring-rotate 15s linear infinite;
+            border-color: var(--primary-light);
+          }
+
+          .deco-2 {
+            width: 80px;
+            height: 80px;
+            bottom: 20px;
+            left: -40px;
+            animation: ring-rotate 12s linear infinite reverse;
+            border-color: var(--secondary-light);
+          }
+
+          .deco-3 {
+            width: 60px;
+            height: 60px;
+            top: 50%;
+            right: -80px;
+            animation: ring-rotate 8s linear infinite;
+            border-color: var(--accent-color);
+          }
+
+          /* Responsive Design */
+          @media (max-width: 1024px) {
+            .about-content {
+              grid-template-columns: 1fr;
+              gap: 3rem;
+              text-align: center;
+            }
+            
+            .profile-image-container {
+              width: 280px;
+              height: 280px;
+            }
+          }
+
+          @media (max-width: 768px) {
+            .about-section {
+              padding: 4rem 0;
+            }
+
+            .section-title {
+              font-size: 2.5rem;
+              margin-bottom: 3rem;
+            }
+            
+            .about-content {
+              gap: 2rem;
+            }
+
+            .profile-image-container {
+              width: 240px;
+              height: 240px;
+            }
+
+            .intro-text, .bio-text {
+              font-size: 1.1rem;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .section-title {
+              font-size: 2rem;
+            }
+
+            .profile-image-container {
+              width: 200px;
+              height: 200px;
+            }
+
+            .intro-text, .bio-text {
+              font-size: 1rem;
+            }
+
+            .about-details {
+              gap: 1.5rem;
+            }
+          }
+
+          /* Animation delays */
+          .delay-1 { animation-delay: 0.2s; }
+          .delay-2 { animation-delay: 0.4s; }
+          .delay-3 { animation-delay: 0.6s; }
+          .delay-4 { animation-delay: 0.8s; }
+          .delay-5 { animation-delay: 1s; }
+
+          /* RTL Support */
+          :global(.rtl) .about-text {
+            text-align: right;
           }
           
-          .about-content {
-            padding: 1rem;
+          :global(.rtl) .card-content {
+            text-align: right;
           }
           
-          .about-detail h3 {
-            font-size: 1.1rem;
+          :global(.rtl) .btn {
+            flex-direction: row-reverse;
           }
-          
-          .btn {
-            padding: 0.6rem 1.2rem;
-            font-size: 0.9rem;
-          }
-        }
-        
-        :global(.rtl) .about-text {
-          text-align: right;
-        }
-        
-        :global(.rtl) .about-detail h3 {
-          flex-direction: row-reverse;
-        }
-        
-        :global(.rtl) .btn {
-          flex-direction: row-reverse;
-        }
-      `}</style>
-    </section>
+        `}</style>
+      </section>
+    </>
   );
 }
 
