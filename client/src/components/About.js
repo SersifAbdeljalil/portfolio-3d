@@ -42,50 +42,6 @@ function About() {
 
   return (
     <>
-      {/* Enhanced background with particles */}
-      <div className="enhanced-background">
-        <div className="mouse-follower" style={{left: '50%', top: '50%'}}></div>
-        
-        {/* Central sphere */}
-        <div className="central-sphere">
-          <div className="sphere-inner">
-            <div className="sphere-core"></div>
-            <div className="sphere-ring ring-1"></div>
-            <div className="sphere-ring ring-2"></div>
-            <div className="sphere-ring ring-3"></div>
-          </div>
-        </div>
-
-        {/* Floating particles */}
-        <div className="floating-particle" style={{
-          top: '20%', 
-          left: '15%', 
-          width: '8px', 
-          height: '8px',
-          animationDelay: '0s'
-        }}></div>
-        <div className="floating-particle" style={{
-          top: '70%', 
-          right: '20%', 
-          width: '12px', 
-          height: '12px',
-          animationDelay: '2s'
-        }}></div>
-        <div className="floating-particle" style={{
-          top: '40%', 
-          left: '80%', 
-          width: '6px', 
-          height: '6px',
-          animationDelay: '4s'
-        }}></div>
-
-        {/* Geometric shapes */}
-        <div className="geometric-shapes">
-          <div className="shape triangle"></div>
-          <div className="shape hexagon"></div>
-          <div className="shape circle"></div>
-        </div>
-      </div>
 
       <section className="about-section">
         <div className="container">
@@ -93,7 +49,7 @@ function About() {
 
           <div className="about-content fade-in-up delay-1">
             <div className="about-text">
-              <p className="intro-text">{t('about.intro')}</p>
+          
               <p className="bio-text">{t('about.bio')}</p>
 
               <div className="about-details">

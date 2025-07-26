@@ -161,7 +161,7 @@ function Contact() {
                       <Mail size={24} />
                     </div>
                     <div className="info-details">
-                      <h3 className="card-title">{t('contact.info.email', 'Email')}</h3>
+                      <h3 className="card-title">Email</h3>
                       <p className="card-description">
                         <a href="mailto:ibtissamjabir7@gmail.com">ibtissamjabir7@gmail.com</a>
                       </p>
@@ -177,7 +177,7 @@ function Contact() {
                       <Phone size={24} />
                     </div>
                     <div className="info-details">
-                      <h3 className="card-title">{t('contact.info.phone', 'Téléphone')}</h3>
+                      <h3 className="card-title">Téléphone</h3>
                       <p className="card-description">
                         <a href="tel:+8613052375253">+86 130 5237 5253</a>
                       </p>
@@ -193,8 +193,8 @@ function Contact() {
                       <MapPin size={24} />
                     </div>
                     <div className="info-details">
-                      <h3 className="card-title">{t('contact.info.location', 'Localisation')}</h3>
-                      <p className="card-description">{t('contact.info.locationDetails', 'Casablanca, Maroc')}</p>
+                      <h3 className="card-title">Localisation</h3>
+                      <p className="card-description">{t('contact.info.locationDetails', 'Shanghai, China')}</p>
                     </div>
                   </div>
                 </div>

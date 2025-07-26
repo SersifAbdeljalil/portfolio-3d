@@ -2,11 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
+import cvFile from './assets/Documents/IBTISSAME_JABIR.pdf';
+import { saveAs } from 'file-saver';
 
 function Footer() {
-  const { t } = useTranslation(); // ✅ Utilisation du vrai hook de traduction
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Fonction pour télécharger le CV
+  const handleDownloadCV = () => {
+    saveAs(cvFile, 'Ibtissame_Jabir_CV.pdf');
+  };
 
   useEffect(() => {
     // Function to check theme
@@ -204,10 +211,10 @@ function Footer() {
               </h3>
               <ul className="links-list">
                 <li className="link-item">
-                  <a href="/cv.pdf" download className="footer-link">
+                  <button onClick={handleDownloadCV} className="footer-link download-cv-btn">
                     <span className="link-text">{t('footer.downloadCV')}</span>
                     <div className="link-hover"></div>
-                  </a>
+                  </button>
                 </li>
                 <li className="link-item">
                   <Link to="/projects" className="footer-link">
@@ -382,6 +389,16 @@ function Footer() {
           border-radius: 0.5rem;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           overflow: hidden;
+        }
+
+        .download-cv-btn {
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+          text-align: left;
+          font-family: inherit;
+          font-size: inherit;
         }
 
         .link-text, .contact-text {
